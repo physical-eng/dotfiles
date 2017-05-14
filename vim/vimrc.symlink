@@ -1,4 +1,4 @@
-syntax on
-
-" Wrap gitcommit file types at the appropriate length
-filetype indent plugin on
+set shellslash
+set runtimepath+=~/.dotfiles/
+runtime! vim/*.vim
+source ~/.vimrc.local

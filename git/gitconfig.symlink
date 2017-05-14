@@ -4,11 +4,22 @@
 [hub]
         protocol = https
 [alias]
-        co = checkout
         promote = !$ZSH/bin/git-promote
         wtf     = !$ZSH/bin/git-wtf
         rank-contributors = !$ZSH/bin/git-rank-contributors
         count   = !git shortlog -sn
+        tr  = log --graph --pretty=format:'\t\t%C(yellow)%h%Creset %Creset %<(90)%s %Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
+        trb = log         --pretty=format:'\t\t%C(yellow)%h%Creset %Creset %<(90)%s %Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
+        co  = checkout
+        ci  = commit
+        cm  = commit --amend
+        ca  = commit -a
+        br  = branch
+        di  = diff -w --word-diff 
+        dn  = diff --name-only
+        cp  = cherry-pick
+        vd  = difftool --tool=vimdiff --no-prompt
+
 [color]
         diff = auto
         status = auto
@@ -16,7 +27,12 @@
         ui = true
 [core]
         excludesfile = ~/.gitignore
-        editor = vim
+        editor = vim -c \"set fenc=utf-8\"
+        autocrlf = input
+        safecrlf = false
+        quotepath = false
+        filemode = true
+        attributesfile = ~/.gitattributes
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -31,3 +47,19 @@
         #
         # Setting to git 2.0 default to suppress warning message
         default = simple
+
+[gui]
+        encoding = utf-8
+
+[url "https://"]
+        insteadOf = git://
+
+[filter "Altera-Partition-OFF"]
+        clean = csed -e 's/\\(IGNORE_PARTITIONS\\) .*/\\1 ON/'
+
+[filter "qsys_common"]
+        #smudge =  perl -0pe 's/(datum\\ssopceditor_expanded\\s*.*\\s*value\\s=)(\\s\".\")/\\1 \"0\"/gm'
+        clean  =  perl -0pe 's/(datum\\ssopceditor_expanded\\s*.*\\s*value\\s=)(\\s\".\")/\\1 \"0\"/gm'
+        smudge =  cat
+        clean  = cat
+    

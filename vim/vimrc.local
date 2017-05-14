@@ -1,0 +1,4 @@
+:set directory=~/AppData/Local/Temp
+:set backupdir=~/AppData/Local/Temp
+:set viminfo+=n~/AppData/Local/Temp
+:set undodir=~/AppData/Local/Temp

@@ -1,0 +1,41 @@
+# .bashrc
+
+# ZSH is undefined
+if [ -z "$ZSH" ] && [ "${ZSH:-A}" = "${ZSH-A}" ]; then 
+    ZSH=$BASH
+fi
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# Source local definitions
+if [ -f ~/.bashrc.local ]; then
+	. ~/.bashrc.local
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+alias :q=exit
+alias gitdiff="git difftool --tool=vimdiff --no-prompt"
+alias gitcd="cd \`git rev-parse --show-toplevel\`"
+
+#GIT
+
+#
+# git-completion.bash / git-prompt.sh
+#
+if [ -f /usr/local/src/git/contrib/completion/git-prompt.sh ]; then
+    source /usr/local/src/git/contrib/completion/git-prompt.sh
+    PS1="\[\033[1;32m\]\$(date +%Y/%m/%d_%H:%M:%S)\[\033[0m\] \[\033[33m\]\H:\w\n\[\033[0m\][\u@ \W]\[\033[36m\]\$(__git_ps1)\[\033[00m\]\$ "
+    if [ -f /usr/local/src/git/contrib/completion/git-completion.bash ]; then
+        source /usr/local/src/git/contrib/completion/git-completion.bash
+    fi
+fi
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUPSTREAM=auto
