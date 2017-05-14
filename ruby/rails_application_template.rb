@@ -20,6 +20,7 @@ end
 
 gem_group :development, :test do
   gem 'rspec-rails'
+  gem "spring-commands-rspec"
 # ...
 end
 
@@ -41,6 +42,7 @@ after_bundle do
   run 'echo \'end\' >> Guardfile'
   run 'bundle exec guard init rails_best_practices'
   run 'bundle exec guard init rubocop'
+  run 'spring stop'
   run 'bundle exec rails generate rspec:install'
 
   git :init
