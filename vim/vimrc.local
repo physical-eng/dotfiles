@@ -1,4 +1,11 @@
-:set directory=~/temp
-:set backupdir=~/temp
-:set viminfo+=n~/temp
-:set undodir=~/temp
+
+let s:vim_cache_dir=expand("~/.vim/cache")
+
+if !isdirectory(s:vim_cache_dir)
+    call system ("mkdir ". s:vim_cache_dir)
+endif
+
+let &directory=expand(s:vim_cache_dir)
+let &backupdir=expand(s:vim_cache_dir)
+let &undodir=expand(s:vim_cache_dir)
+let &viminfo= &viminfo.",n".expand(s:vim_cache_dir)."viminfo"

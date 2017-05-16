@@ -6,17 +6,26 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 hook_post_update = '''
-  if dein#util#_is_windows()
+if dein#util#_is_windows()
     let cmd = 'tools\\update-dll-mingw'
-  elseif dein#util#_is_cygwin()
-    let cmd = 'make -f make_cygwin.mak'
-  elseif executable('gmake')
+elseif executable('gmake')
     let cmd = 'gmake'
-  else
-    let cmd = 'make'
-  endif
-  let g:dein#plugin.build = cmd
+else
+    let cmd = "echo vimproc: make &&"
+    let cmd = cmd.'make'
+endif
+    let g:dein#plugin.build = cmd
 '''
+#elseif dein#util#_is_cygwin()
+#    let cmd = 'make -f make_cygwin.mak'
+#elseif executable('gmake')
+#    let cmd = 'gmake'
+#else
+#    let cmd = 'make'
+#endif
+#    echo "vimproc: cygwin"
+#    echo "vimproc: windows"
+#    echo "vimproc: gmake"
 
 #Color Scheme
 [[plugins]]

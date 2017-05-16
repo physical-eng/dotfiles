@@ -1,16 +1,14 @@
 set shellslash
-set runtimepath+=~/.dotfiles/
+set runtimepath+=~/.dotfiles/vim
 
-"runtime! vim/*.vim
+runtime! base/*.vim
 
-source ~/.dotfiles/vim/base/vimrc.base.vim
-source ~/.dotfiles/vim/dein/vimrc.dein.vim
+if DeinIsInstalled()
+    runtime! extend/*.vim
+endif
 
-"source ~/.dotfiles/vim/vimrc.key_binds.vim       
-"source ~/.dotfiles/vim/vimrc.key_binds_unite.vim 
-"source ~/.dotfiles/vim/vimrc.memo.vim            
-"source ~/.dotfiles/vim/vimrc.options.vim         
-
-
+if !filereadable ("~/.vimrc.local")
+    call system("cp ~/.dotfiles/vim/vimrc.local ~/.vimrc.local")
+endif
 
 source ~/.vimrc.local

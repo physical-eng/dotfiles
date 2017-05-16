@@ -8,6 +8,10 @@ let s:dein_dir = s:cache_home . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 let &runtimepath = &runtimepath . "," . s:dein_repo_dir
 
+function! DeinIsInstalled()
+    return isdirectory(s:dein_repo_dir)
+endfunction
+
 "Deinによるプラグイン設定 {{{1
 function! InstallPlugins()
     if dein#load_state(s:dein_dir)
@@ -36,13 +40,14 @@ endfunction "}}}
 
 " deinがインストールされていない場合、dein自体のインストール関数を定義
 " とりあえずプラグイン無しでVimを動かしたいときにdeinに待たされないように手動としている
-if !isdirectory(s:dein_repo_dir)
+if !DeinIsInstalled()
     echo "dein.vim is not installed. If you want, run \":call InstallDein()\"."
     function! InstallDein() "{{{1
         echo "Installing dein..."
         call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
-        call InstallPlugins()
     endfunction
+else
+    call InstallPlugins()
 endif
 
 
