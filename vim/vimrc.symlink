@@ -1,4 +1,16 @@
 set shellslash
 set runtimepath+=~/.dotfiles/
-runtime! vim/*.vim
+
+"runtime! vim/*.vim
+
+source ~/.dotfiles/vim/base/vimrc.base.vim
+source ~/.dotfiles/vim/dein/vimrc.dein.vim
+
+"source ~/.dotfiles/vim/vimrc.key_binds.vim       
+"source ~/.dotfiles/vim/vimrc.key_binds_unite.vim 
+"source ~/.dotfiles/vim/vimrc.memo.vim            
+"source ~/.dotfiles/vim/vimrc.options.vim         
+
+
+
 source ~/.vimrc.local
