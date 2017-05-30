@@ -39,6 +39,25 @@ depends = 'neomru.vim'
 [[plugins]]
 repo =  'Shougo/denite.nvim'
 depends = 'neomru.vim'
+hook_add='''
+call denite#custom#option('default','direction','top')
+call denite#custom#option('default','mode','normal')
+
+"denite/insert モードのときは，C- で移動できるようにする
+call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
+call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
+
+"tabopen や vsplit のキーバインドを割り当て
+call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
+call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
+call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
+
+"jj -> denite/insert を抜けるようにする
+call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
+
+nnoremap <Leader>u :Denite file_mru<CR>
+nnoremap <Leader>uf :Denite file<CR>
+'''
 
 #
 #"VimFiler
