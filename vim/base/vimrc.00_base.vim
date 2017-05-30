@@ -64,7 +64,10 @@ set cursorcolumn
 set cursorline
 
 set autoindent
-set breakindent
+
+if ((v:version == 704 && has("patch785")) || v:version >= 705)
+    set breakindent
+endif
 
 set ignorecase
 set incsearch
@@ -161,13 +164,13 @@ set guitablabel=%N%{GuiTabLabel()}
 
 "バイナリ編集(xxd)モード（vim -b での起動、もしくは *.bin ファイルを開くと発動します）
 augroup BinaryXXD
-  au!
-  au BufReadPre  *.bin let &binary =1
-  au BufReadPost * if &binary | silent %!xxd -g 1
-  au BufReadPost * set ft=xxd | endif
-  au BufWritePre * if &binary | %!xxd -r | endif
-  au BufWritePost * if &binary | silent %!xxd -g 1
-  au BufWritePost * set nomod | endif
+    au!
+    au BufReadPre  *.bin let &binary =1
+    au BufReadPost * if &binary | silent %!xxd -g 1
+    au BufReadPost * set ft=xxd | endif
+    au BufWritePre * if &binary | %!xxd -r | endif
+    au BufWritePost * if &binary | silent %!xxd -g 1
+    au BufWritePost * set nomod | endif
 augroup END
 
 "拡張子 md をMarkDownとして認識 {{{1
