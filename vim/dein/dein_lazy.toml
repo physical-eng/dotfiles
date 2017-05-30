@@ -19,6 +19,9 @@ on_ft=['markdown']
 #Git
 [[plugins]]
 repo =  'tpope/vim-fugitive'
+hook_add='''
+set statusline=%F%m%r%h%w\ %=%{fugitive#statusline()}\ \ [%Y,%{&ff}]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+'''
 
 [[plugins]]
 repo =  'gregsexton/gitv'
