@@ -84,7 +84,6 @@ set fillchars=vert:\|
 
 " ステータスラインの設定                                 
 "set statusline=%F%m%r%h%w\ %=%{fugitive#statusline()}\ \ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-set statusline=%F%m%r%h%w\ %=%{fugitive#statusline()}\ \ [%Y,%{&ff}]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 
 "HDL Plugin Header {{{1
 let g:HDL_Company = "AVC Technology Co., Ltd."
