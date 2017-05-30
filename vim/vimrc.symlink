@@ -7,7 +7,7 @@ if DeinIsInstalled()
     runtime! extend/*.vim
 endif
 
-if !filereadable ("~/.vimrc.local")
+if !filereadable (expand("~/.vimrc.local"))
     call system("cp ~/.dotfiles/vim/vimrc.local ~/.vimrc.local")
 endif
 
