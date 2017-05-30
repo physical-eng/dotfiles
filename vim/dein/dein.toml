@@ -27,6 +27,23 @@ endif
 #    echo "vimproc: windows"
 #    echo "vimproc: gmake"
 
+#Neomru
+[[plugins]]
+repo =  'Shougo/neomru.vim'
+
+#Unite
+[[plugins]]
+repo =  'Shougo/unite.vim'
+depends = 'neomru.vim'
+
+[[plugins]]
+repo =  'Shougo/denite.nvim'
+depends = 'neomru.vim'
+
+#
+#"VimFiler
+[[plugins]]
+repo =  'Shougo/vimfiler'
 #Color Scheme
 [[plugins]]
 repo =  'sjl/badwolf'
@@ -43,19 +60,12 @@ repo =  'Shougo/neocomplete'
 [[plugins]]
 repo =  'Shougo/neocomplcache'
 
-##Denite
-#[[plugins]]
-#repo = 'Shougo/denite.nvim'
-
 #"[[plugins]]
 #"repo =  'idanarye/vim-merginal'
 #"[[plugins]]
 #"repo =  'cohama/agit.vim'
 #"[[plugins]]
 #"repo =  'rhysd/committia.vim'
-#[[plugins]]
-#repo =  'gregsexton/gitv'
-#
 #Align
 [[plugins]]
 repo =  'vim-scripts/Align'

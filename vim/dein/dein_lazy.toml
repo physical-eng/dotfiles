@@ -5,19 +5,6 @@ on_ft=['markdown']
 
 #call unite#custom_default_action('source/bookmark/directory' , 'cd')
 
-#Neomru
-[[plugins]]
-repo =  'Shougo/neomru.vim'
-
-#Unite
-[[plugins]]
-repo =  'Shougo/unite.vim'
-depends = 'neomru.vim'
-
-#
-#"VimFiler
-[[plugins]]
-repo =  'Shougo/vimfiler'
 #[[plugins]]
 #repo =  'Shougo/vimshell.vim'
 #[[plugins]]
@@ -32,4 +19,7 @@ repo =  'Shougo/vimfiler'
 #Git
 [[plugins]]
 repo =  'tpope/vim-fugitive'
+
+[[plugins]]
+repo =  'gregsexton/gitv'
 
