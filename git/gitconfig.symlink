@@ -8,8 +8,9 @@
         wtf     = !$ZSH/bin/git-wtf
         rank-contributors = !$ZSH/bin/git-rank-contributors
         count   = !git shortlog -sn
-        tr  = log --graph --pretty=format:'\t\t%C(yellow)%h%Creset %Creset %<(90)%s %Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
-        trb = log         --pretty=format:'\t\t%C(yellow)%h%Creset %Creset %<(90)%s %Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
+        tr  = log         --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(yellow)%h%Creset %Creset %<(75,trunc)%s \t%Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
+        trg = log --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'\t\t%C(yellow)%h%Creset %Creset %<(75,trunc)%s \t%Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
+        tro = log --graph                                   --pretty=format:'\t\t%C(yellow)%h%Creset %Creset %<(90)%s %Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
         co  = checkout
         ci  = commit
         cm  = commit --amend
@@ -18,7 +19,6 @@
         di  = diff -w --word-diff 
         dn  = diff --name-only
         cp  = cherry-pick
-        vd  = difftool --tool=vimdiff --no-prompt
 
 [color]
         diff = auto
@@ -27,7 +27,7 @@
         ui = true
 [core]
         excludesfile = ~/.gitignore
-        editor = vim -c \"set fenc=utf-8\"
+    editor = vim -c \"set fenc=utf-8\" -c \"let g:committia_open_only_vim_starting=0\"
         autocrlf = input
         safecrlf = false
         quotepath = false
