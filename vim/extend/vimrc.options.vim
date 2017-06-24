@@ -80,7 +80,14 @@ let g:syntastic_check_on_wq = 0
 "Folding {{{1
 set foldtext=FoldCCtext()
 set fillchars=vert:\|
+let g:foldCCtext_maxchars=200
+let g:foldCCtext_head='v:folddashes. " "'
+let g:foldCCtext_tail='printf(" %s[%4d lines Lv%-2d]%s", v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
 
+augroup Git
+    autocmd!
+    autocmd FileType git setlocal foldtext=fugitive#foldtext()
+augroup END
 
 " ステータスラインの設定                                 
 "set statusline=%F%m%r%h%w\ %=%{fugitive#statusline()}\ \ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]

@@ -180,10 +180,10 @@ au BufNewFile *.txt set filetype=markdown fenc=utf-8 ff=unix
 au BufNewFile *.md set filetype=markdown fenc=utf-8 ff=unix
 
 "Verilog/vimrcは折りたたみをマーカーで {{{1
-au BufRead *.vim set foldmethod=marker
-au BufRead *.v set foldmethod=marker
-au BufRead *.sv set foldmethod=marker
-au BufRead .vimrc set foldmethod=marker
+au BufRead *.vim setlocal foldmethod=marker
+au BufRead *.v setlocal foldmethod=marker
+au BufRead *.sv setlocal foldmethod=marker
+au BufRead .vimrc setlocal foldmethod=marker
 
 "QuickFix {{{1
 au QuickFixCmdPost *grep* cwindow

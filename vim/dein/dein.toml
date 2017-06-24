@@ -83,8 +83,9 @@ repo =  'Shougo/neocomplcache'
 #"repo =  'idanarye/vim-merginal'
 #"[[plugins]]
 #"repo =  'cohama/agit.vim'
-#"[[plugins]]
-#"repo =  'rhysd/committia.vim'
+[[plugins]]
+repo =  'rhysd/committia.vim'
+
 #Align
 [[plugins]]
 repo =  'vim-scripts/Align'
@@ -100,8 +101,8 @@ repo =  'vim-scripts/Align'
 #[[plugins]]
 #repo =  'lervag/vimtex'
 #
-#[[plugins]]
-#repo =  'LeafCage/foldCC.vim'
+[[plugins]]
+repo =  'LeafCage/foldCC.vim'
 #
 #[[plugins]]
 #repo =  'tpope/vim-surround'

@@ -19,8 +19,15 @@ on_ft=['markdown']
 #Git
 [[plugins]]
 repo =  'tpope/vim-fugitive'
+depends='committia.vim'
 hook_add='''
 set statusline=%F%m%r%h%w\ %=%{fugitive#statusline()}\ \ [%Y,%{&ff}]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+'''
+
+[[plugins]]
+repo =  'rhysd/committia.vim'
+hook_add='''
+let g:committia_open_only_vim_starting=1
 '''
 
 [[plugins]]
