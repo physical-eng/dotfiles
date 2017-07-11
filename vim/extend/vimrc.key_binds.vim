@@ -97,6 +97,10 @@ nnoremap <C-G><C-l> :Gitv<CR>
 nnoremap <Leader>gv :Gitv<CR>
 nnoremap <Leader>gl :Gitv<CR>
 
+" Git Merginal
+nnoremap <Leader>gm :Merginal<CR>
+
+
 "Git flow コマンド {{{1
 command! -nargs=+ -complete=custom,GitFlowCommand Gflow :Git flow <args> 
 nnoremap <Leader>gf :Gflow 

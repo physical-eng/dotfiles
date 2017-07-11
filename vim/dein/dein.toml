@@ -79,8 +79,8 @@ repo =  'Shougo/neocomplete'
 [[plugins]]
 repo =  'Shougo/neocomplcache'
 
-#"[[plugins]]
-#"repo =  'idanarye/vim-merginal'
+[[plugins]]
+repo =  'idanarye/vim-merginal'
 #"[[plugins]]
 #"repo =  'cohama/agit.vim'
 [[plugins]]

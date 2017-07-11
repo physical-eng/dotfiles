@@ -1,4 +1,4 @@
-set shellslash
+"set shellslash
 set runtimepath+=~/.dotfiles/vim
 
 runtime! base/*.vim
