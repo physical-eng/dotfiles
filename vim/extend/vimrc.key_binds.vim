@@ -70,13 +70,18 @@ nnoremap <F6> :!vlib R:\\modelsim\\work && vmap work R:\\modelsim\\work<CR>
 nnoremap - :ChooseWin<CR>
 
 "grep {{{1
-nmap * :on<CR>/\<<C-R><C-W>\><CR>:vim /\<<C-R><C-W>\>/ %<CR>
+nnoremap * <Nop>
+nnoremap * /\<<C-R><C-W>\><CR>:vim /\<<C-R><C-W>\>/ %<CR>
+
+"grep(ディレクトリ) {{{1
+nnoremap <C-*> <Nop>
+nnoremap <C-*> :CdCurrent<CR>/\<<C-R><C-W>\><CR>:vim /\<<C-R><C-W>\>/ *<CR><C-W><C-J>
 
 "c*でカーソル上の単語を置換 //{{{1
 nnoremap <expr> c* ':%s/\(\<' . expand('<cword>') . '\>\)/'
 
 "QuickFix {{{1
-autocmd QuickFixCmdPost *grep* cwindow
+autocmd QuickFixCmdPost *grep* :botright cwindow
 nnoremap <Leader>p :cprevious<CR>
 nnoremap <Leader>n :cnext<CR>
 nnoremap <Leader>gg :<C-u>cfirst<CR>

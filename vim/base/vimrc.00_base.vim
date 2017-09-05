@@ -56,6 +56,7 @@ set pumheight=10
 set showmatch
 set matchtime=1
 
+set list
 set number
 set nowrap
 set tw=0
@@ -69,7 +70,7 @@ if ((v:version == 704 && has("patch785")) || v:version >= 705)
     set breakindent
 endif
 
-set ignorecase
+set smartcase
 set incsearch
 set hlsearch
 
@@ -88,6 +89,7 @@ set backspace=indent,eol,start
 set wildmenu
 
 set laststatus=2
+set showcmd
 
 "IMEを自動OFF "{{{1
 set iminsert=0
@@ -100,24 +102,33 @@ set background=dark
 
 filetype plugin indent on
 
-"Tab Color {{{1
-hi TabLineSel ctermfg=Black ctermbg=White
-hi TabLine    ctermfg=white ctermbg=Black
+"ハイライト関係の設定 "{{{1
+augroup ColorScheme
+    au!
+    au * highlight Comment ctermfg=22 guifg=#008800
+    "Tab Color {{{2
+    au * hi TabLineSel ctermfg=Black ctermbg=White
+    au * hi TabLine    ctermfg=white ctermbg=Black
 
-"カーソルの色 {{{1
-hi CursorColumn ctermbg=8
-hi CursorLine   cterm=underline
+    "カーソルの色 {{{2
+    au * hi CursorColumn ctermbg=8
+    au * hi CursorLine   cterm=underline
 
-" コメントハイライト 設定 {{{1
-syn match   myTodo   contained   "\<\(TBD\|TODO\|FIXME\):"
-hi def link myTodo Todo
+    " コメントハイライト 設定 {{{2
+    au * syn match   myTodo   contained   "\<\(TBD\|TODO\|FIXME\):"
+    au * hi def link myTodo Todo
+
+    "ビジュアルモードハイライト設定 {{{2
+    au * highlight Visual termfg=236 ctermfg=236 guifg=#000000
+    au * highlight Visual termbg=250 ctermbg=250 guibg=#777777
+augroup END
 
 "VimDiffでは空白の数の違いを無視 "{{{1
 set diffopt=filler,iwhite,context:3
 
 " タブページを常に表示 {{{1
 set showtabline=2
-set guitablabel=%{GuiTabLabel()}
+"set guitablabel=%{GuiTabLabel()}
 
 "個別のタブの表示設定 {{{1
 function! GuiTabLabel()
@@ -178,6 +189,9 @@ au BufRead *.md set filetype=markdown
 au BufRead *.txt set filetype=markdown
 au BufNewFile *.txt set filetype=markdown fenc=utf-8 ff=unix
 au BufNewFile *.md set filetype=markdown fenc=utf-8 ff=unix
+
+"拡張子 plt をgnuplotファイルとして認識 {{{1
+au BufRead, BufNewFile *.plt set filetype=gnuplot
 
 "Verilog/vimrcは折りたたみをマーカーで {{{1
 au BufRead *.vim setlocal foldmethod=marker

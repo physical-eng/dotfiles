@@ -6,8 +6,8 @@ colorscheme industry
 "colorscheme baycomb
 "colo solarized
 
-"VimFilerでファイルを開くときにタブで開く
-let g:vimfiler_edit_action = 'tabswitch'
+""VimFilerでファイルを開くときにタブで開く
+"let g:vimfiler_edit_action = 'tabswitch'
 
 "スニペット {{{1
 imap <expr><C-k>
