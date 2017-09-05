@@ -31,26 +31,24 @@ nnoremap z<S-v> zMzv
 
 set number
 syntax on
+set hidden
 
 "C-aのインクリメント時に8進数表記を10進数として認識 "{{{1
 set nf=""
 
-"splitで開く時新しいウィンドウを下に表示する "{{{1
-set splitbelow
+set splitbelow "splitで開く時新しいウィンドウを下に表示する
+set splitright "vsplitで開く時新しいウィンドウを右に表示する
 
-"vsplitで開く時新しいウィンドウを右に表示する "{{{1
-set splitright
+set foldmethod=syntax "通常の折りたたみはシンタックス依存
+set foldcolumn=5 " 画面の左端に折りたたみ表示用の列を5列表示
 
-"通常の折りたたみはシンタックス依存
-set foldmethod=syntax
+set display=lastline "長い行も最後まで表示
 
-set foldcolumn=5
-
-"長い行も最後まで表示 {{{1
-set display=lastline
-
-"補完メニューの高さ {{{1
-set pumheight=10
+set pumheight=10 "補完メニューの高さ
+set cmdheight=3
+set showcmd "入力中のコマンドをステータスラインに表示
+set laststatus=2
+set scrolloff=10
 
 "対応する括弧へ飛ぶ(showmatch)と、その時間0.1秒単位(matchtime) {{{1
 set showmatch
@@ -70,6 +68,7 @@ if ((v:version == 704 && has("patch785")) || v:version >= 705)
     set breakindent
 endif
 
+set ignorecase
 set smartcase
 set incsearch
 set hlsearch
@@ -86,10 +85,8 @@ set ambiwidth=double
 set backspace=indent,eol,start
 
 "コマンド補完時に候補表示 "{{{1
-set wildmenu
+set wildmenu wildmode=list:longest,full 
 
-set laststatus=2
-set showcmd
 
 "IMEを自動OFF "{{{1
 set iminsert=0
@@ -128,7 +125,6 @@ set diffopt=filler,iwhite,context:3
 
 " タブページを常に表示 {{{1
 set showtabline=2
-"set guitablabel=%{GuiTabLabel()}
 
 "個別のタブの表示設定 {{{1
 function! GuiTabLabel()
