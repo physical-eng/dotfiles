@@ -71,6 +71,8 @@ repo =  'Shougo/vimfiler'
 [[plugins]]
 repo =  'sjl/badwolf'
 [[plugins]]
+repo =  'vim-scripts/twilight'
+[[plugins]]
 repo =  'vim-scripts/baycomb'
 [[plugins]]
 repo =  "w0ng/vim-hybrid"
