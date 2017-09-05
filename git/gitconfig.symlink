@@ -3,22 +3,30 @@
         path = ~/.gitconfig.local
 [hub]
         protocol = https
+[init]
+        templatedir = ~/.git_template
 [alias]
         promote = !$ZSH/bin/git-promote
         wtf     = !$ZSH/bin/git-wtf
         rank-contributors = !$ZSH/bin/git-rank-contributors
         count   = !git shortlog -sn
-        tr  = log         --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(yellow)%h%Creset %Creset %<(75,trunc)%s \t%Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
-        trg = log --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'\t\t%C(yellow)%h%Creset %Creset %<(75,trunc)%s \t%Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
-        tro = log --graph                                   --pretty=format:'\t\t%C(yellow)%h%Creset %Creset %<(90)%s %Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
+        tr  = log            --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(yellow)%h%Creset %Creset %<(60,trunc)%s \t%Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
+        trg = log --graph    --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'\t\t%C(yellow)%h%Creset %Creset %<(60,trunc)%s \t%Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
+        tro = log --graph                                      --pretty=format:'\t\t%C(yellow)%h%Creset %Creset %<(90)%s %Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
+        trc = log --oneline  --date=format:'%Y/%m/%d %H:%M:%S' --pretty=format:'%h [%cd]  <%an> %s  %d '
         co  = checkout
         ci  = commit
         cm  = commit --amend
         ca  = commit -a
         br  = branch
         di  = diff -w --word-diff 
-        dn  = diff --name-only
+        dic = diff -w --cached
+        dis = "!f(){ cmd=\"git di ${@:1} -- *.sv *.v *.c *.h *.qsys\"; echo $cmd; eval $cmd; };f"
+        dn  = diff -w --name-only
         cp  = cherry-pick
+        cpn = cherry-pick --no-commit
+        stu = status -uno
+        
 
 [color]
         diff = auto
@@ -55,11 +63,14 @@
         insteadOf = git://
 
 [filter "Altera-Partition-OFF"]
-        clean = csed -e 's/\\(IGNORE_PARTITIONS\\) .*/\\1 ON/'
+        clean = sed -e 's/\\(IGNORE_PARTITIONS\\) .*/\\1 ON/'
 
 [filter "qsys_common"]
         #smudge =  perl -0pe 's/(datum\\ssopceditor_expanded\\s*.*\\s*value\\s=)(\\s\".\")/\\1 \"0\"/gm'
-        clean  =  perl -0pe 's/(datum\\ssopceditor_expanded\\s*.*\\s*value\\s=)(\\s\".\")/\\1 \"0\"/gm'
-        smudge =  cat
-        clean  = cat
+        #clean  =  perl -0pe 's/(datum\\ssopceditor_expanded\\s*.*\\s*value\\s=)(\\s\".\")/\\1 \"0\"/gm'
+        clean = vi -es /dev/stdin +\":%s/\\([^>}]\\)\\n/\\1 /ge | %s/}\\n \\+}/} }/ge | %s/ \\+/ /ge | %s/^\\s\\+//ge | %s/^\\(.*sopceditor_expanded.*value\\) = \\\"1\\\"/\\1 = \\\"0\\\"/e\" +%p +q!
+
+    
+#        smudge =  cat
+#        clean  = cat
     
