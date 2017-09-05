@@ -36,14 +36,13 @@ function! InstallPlugins()
         call dein#save_state()
     endif
 
+
+    augroup DeinStarter
+        au!
         " 不足プラグインの自動インストール
         if has('vim_starting') && dein#check_install()
             call dein#install()
         endif
-
-
-    augroup DeinStarter
-        au!
         autocmd VimEnter * call dein#call_hook('post_source')
     augroup END
 
