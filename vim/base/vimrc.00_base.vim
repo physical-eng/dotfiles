@@ -33,15 +33,18 @@ set number
 syntax on
 set hidden
 
-"C-aのインクリメント時に8進数表記を10進数として認識 "{{{1
-set nf=""
+set nf="" "C-aのインクリメント時に8進数表記を10進数として認識
 
 set splitbelow "splitで開く時新しいウィンドウを下に表示する
 set splitright "vsplitで開く時新しいウィンドウを右に表示する
 
 set foldmethod=syntax "通常の折りたたみはシンタックス依存
-set foldcolumn=5 " 画面の左端に折りたたみ表示用の列を5列表示
+set foldcolumn=5     " 画面の左端に折りたたみ表示用の列を5列表示
 
+set winwidth=100 "カレントウインドウの最低限の幅
+set winheight=50 "カレントウインドウの最低限の高さ
+set winminwidth=20  "カレント以外のウィンドウの最小幅
+set winminheight=10 "カレント以外のウインドウの最小高さ
 set display=lastline "長い行も最後まで表示
 
 set pumheight=10 "補完メニューの高さ
@@ -49,6 +52,7 @@ set cmdheight=3
 set showcmd "入力中のコマンドをステータスラインに表示
 set laststatus=2
 set scrolloff=10
+set history=10000
 
 "対応する括弧へ飛ぶ(showmatch)と、その時間0.1秒単位(matchtime) {{{1
 set showmatch
@@ -62,20 +66,26 @@ set tw=0
 set cursorcolumn
 set cursorline
 
+"***************************
+"        検索設定
+"***************************
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+"********************************
+"    インデントおよびタブ 
+"********************************
+set tabstop=4
+set expandtab
+set shiftwidth=4
 set autoindent
 
 if ((v:version == 704 && has("patch785")) || v:version >= 705)
     set breakindent
 endif
 
-set ignorecase
-set smartcase
-set incsearch
-set hlsearch
-
-set tabstop=4
-set expandtab
-set shiftwidth=4
 
 set encoding=utf-8
 set fileencodings=utf-8,sjis
@@ -216,3 +226,6 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 "Renameコマンドで現在編集中のファイル名を変更 "{{{1
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 
+"まさかのマウス
+set mouse=a
+set ttymouse=xterm2
