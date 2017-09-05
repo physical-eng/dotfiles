@@ -14,6 +14,10 @@ endfunction
 
 "Deinによるプラグイン設定 {{{1
 function! InstallPlugins()
+    augroup MyAutoCmd
+        au!
+    augroup END
+
     if dein#load_state(s:dein_dir)
         call dein#begin(s:dein_dir)
 
@@ -36,6 +40,12 @@ function! InstallPlugins()
     if has('vim_starting') && dein#check_install()
         call dein#install()
     endif
+
+    augroup DeinStarter
+        au!
+        autocmd VimEnter * call dein#call_hook('post_source')
+    augroup END
+
 endfunction "}}}
 
 " deinがインストールされていない場合、dein自体のインストール関数を定義

@@ -36,9 +36,13 @@ repo =  'Shougo/neomru.vim'
 repo =  'Shougo/unite.vim'
 depends = 'neomru.vim'
 
+#############
+# Denite
+############
 [[plugins]]
 repo =  'Shougo/denite.nvim'
 depends = 'neomru.vim'
+# Key Bind Setting 
 hook_add='''
 call denite#custom#option('default','direction','top')
 call denite#custom#option('default','mode','normal')
@@ -79,12 +83,17 @@ repo =  'Shougo/neocomplete'
 [[plugins]]
 repo =  'Shougo/neocomplcache'
 
+#Git
+[[plugins]]
+repo='hotwatermorning/auto-git-diff'
+hook_add='''
+    let g:auto_git_diff_show_window_at_right=1
+'''
 [[plugins]]
 repo =  'idanarye/vim-merginal'
 #"[[plugins]]
 #"repo =  'cohama/agit.vim'
-[[plugins]]
-repo =  'rhysd/committia.vim'
+
 
 #Align
 [[plugins]]
@@ -103,25 +112,19 @@ repo =  'vim-scripts/Align'
 #
 [[plugins]]
 repo =  'LeafCage/foldCC.vim'
+
+[[plugins]]
+repo =  'kshenoy/vim-signature'
+
 #
-#[[plugins]]
-#repo =  'tpope/vim-surround'
+[[plugins]]
+repo =  'tpope/vim-surround'
 #
 #[[plugins]]
 #repo =  'thinca/vim-quickrun'
 #
 #[[plugins]]
-#repo =  'scrooloose/syntastic'
-#[[plugins]]
-#repo =  'vim-scripts/taglist.vim'
-#
-#[[plugins]]
 #repo =  'wannesm/wmgraphviz.vim'
-#
-#"Verilog
-#[[plugins]]
-#repo =  "vhda/verilog_systemverilog.vim"
-#
 #
 #"Markdown
 #[[plugins]]
@@ -135,6 +138,9 @@ repo =  'LeafCage/foldCC.vim'
 #"[[plugins]]
 #"repo =  'vim-scripts/Conque-GDB'
 #
+[[plugins]]
+repo =  't9md/vim-choosewin'
+
 #"TMUX
 [[plugins]]
 repo =  'christoomey/vim-tmux-navigator'

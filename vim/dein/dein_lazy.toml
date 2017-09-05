@@ -1,3 +1,12 @@
+[[plugins]]
+repo =  'scrooloose/syntastic'
+on_ft = ['c','verilog','systemverilog']
+
+##Verilog
+#[[plugins]]
+#repo =  "vhda/verilog_systemverilog.vim"
+#on_ft=
+
 #Table Mode
 [[plugins]]
 repo =  'dhruvasagar/vim-table-mode'
@@ -7,8 +16,6 @@ on_ft=['markdown']
 
 #[[plugins]]
 #repo =  'Shougo/vimshell.vim'
-#[[plugins]]
-#repo =  't9md/vim-choosewin'
 #
 #"NeoSnippet
 #[[plugins]]
@@ -16,20 +23,26 @@ on_ft=['markdown']
 #[[plugins]]
 #repo =  'Shougo/neosnippet-snippets'
 #
-#Git
+####################
+# C
+####################
 [[plugins]]
-repo =  'tpope/vim-fugitive'
-depends='committia.vim'
-hook_add='''
-set statusline=%F%m%r%h%w\ %=%{fugitive#statusline()}\ \ [%Y,%{&ff}]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-'''
+repo =  'vim-scripts/taglist.vim'
+on_ft=['c']
 
+###############
+# Git
+###############
 [[plugins]]
 repo =  'rhysd/committia.vim'
+
+[[plugins]]
+repo ='tpope/vim-fugitive'
+depends='committia.vim'
 hook_add='''
-let g:committia_open_only_vim_starting=1
+    set statusline=%F%m%r%h%w\ %=%{fugitive#statusline()}\ \ [%Y,%{&ff}]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 '''
 
 [[plugins]]
 repo =  'gregsexton/gitv'
-
+depends='vim-fugitive'
