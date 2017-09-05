@@ -1,0 +1,13 @@
+*.hex binary
+*.xls binary
+*.xlsx binary
+*.sof binary
+*.qpf binary
+*.objdump binary
+*.map binary
+*.sym binary
+02_Qsys/*/*.xml binary
+*.qip binary
+*.rpt binary
+*.sopcinfo
+*.qsf filter=Altera-Partition-OFF

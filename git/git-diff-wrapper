@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "Diff"
+old=$2
+new=$5
+colordiff -Nau <(lv $old) <(lv $new) | cat
+
