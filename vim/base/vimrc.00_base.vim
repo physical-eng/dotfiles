@@ -29,7 +29,6 @@ inoremap <S-Tab> <ESC><<i
 "現在居る行の折りたたみ解除
 nnoremap z<S-v> zMzv
 
-set number
 syntax on
 set hidden
 
@@ -206,7 +205,7 @@ au BufRead *.sv setlocal foldmethod=marker
 au BufRead .vimrc setlocal foldmethod=marker
 
 "QuickFix {{{1
-au QuickFixCmdPost *grep* cwindow
+au QuickFixCmdPost *grep* :botright cwindow
 
 "コメント内部での改行時に自動でコメントアウトになる挙動を抑制 {{{1
 au FileType * setlocal formatoptions-=ro 
@@ -229,3 +228,4 @@ command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 "まさかのマウス
 set mouse=a
 set ttymouse=xterm2
+set virtualedit+=all
