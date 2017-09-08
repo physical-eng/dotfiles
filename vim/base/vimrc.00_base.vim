@@ -41,7 +41,7 @@ set foldmethod=syntax "通常の折りたたみはシンタックス依存
 set foldcolumn=5     " 画面の左端に折りたたみ表示用の列を5列表示
 
 set winwidth=100 "カレントウインドウの最低限の幅
-set winheight=50 "カレントウインドウの最低限の高さ
+set winheight=30 "カレントウインドウの最低限の高さ
 set winminwidth=20  "カレント以外のウィンドウの最小幅
 set winminheight=10 "カレント以外のウインドウの最小高さ
 set display=lastline "長い行も最後まで表示
