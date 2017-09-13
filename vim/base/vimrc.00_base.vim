@@ -119,40 +119,41 @@ set t_Co=256
 
 set background=dark
 
-filetype plugin indent on
 
 "ハイライト関係の設定 "{{{1
-augroup ColorScheme
+augroup MyColorScheme
     au!
     "Tab Color {{{2
-    au * hi TabLineSel ctermfg=Black ctermbg=White
-    au * hi TabLine    ctermfg=white ctermbg=Black
+    au ColorScheme * hi TabLineSel ctermfg=Black ctermbg=White
+    au ColorScheme * hi TabLine    ctermfg=white ctermbg=Black
 
     "カーソルの色 {{{2
-    au * hi CursorColumn ctermbg=8
-    au * hi CursorLine   cterm=underline
+    au ColorScheme * hi CursorColumn ctermbg=8
+    au ColorScheme * hi CursorLine   cterm=underline
 
     " コメントハイライト 設定 {{{2
-    au * highlight Comment ctermfg=22 guifg=#008800
+    au ColorScheme * highlight Comment ctermfg=darkgreen guifg=#008800
 
     " コメントキーワードハイライト 設定 {{{2
-    au * syn match   myTodo   contained   "\<\(TBD\|TODO\|FIXME\):"
-    au * hi def link myTodo Todo
+    au ColorScheme * syn match   myTodo   contained   "\<\(TBD\|TODO\|FIXME\):"
+    au ColorScheme * hi def link myTodo Todo
 
     "ビジュアルモードハイライト設定 {{{2
-    au * highlight Visual termfg=236 ctermfg=236 guifg=#000000
-    au * highlight Visual termbg=250 ctermbg=250 guibg=#777777
+    au ColorScheme * highlight Visual  ctermfg=236 guifg=#000000
+    au ColorScheme * highlight Visual  ctermbg=250 guibg=#777777
 
     "アクティブなステータスラインの設定 {{{2
-    au * highlight StatusLine termfg=236 ctermfg=236 guifg=#000000
-    au * highlight StatusLine termbg=250 ctermbg=250 guibg=#777777
+    au ColorScheme * highlight StatusLine ctermfg=236 guifg=#000000
+    au ColorScheme * highlight StatusLine ctermbg=250 guibg=#777777
 
     "非アクティブなステータスラインの設定 {{{2
-    au * highlight StatusLineNC termfg=236 ctermfg=236 guifg=#000000
-    au * highlight StatusLineNC termbg=250 ctermbg=250 guibg=#777777
+    au ColorScheme * highlight StatusLineNC  ctermfg=236 guifg=#000000
+    au ColorScheme * highlight StatusLineNC  ctermbg=250 guibg=#777777
     "}}}2
 augroup END
 
+
+filetype plugin indent on
 "VimDiffでは空白の数の違いを無視 "{{{1
 set diffopt=filler,iwhite,context:3
 
