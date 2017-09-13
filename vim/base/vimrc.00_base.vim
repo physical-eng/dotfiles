@@ -67,15 +67,16 @@ set cursorline
 
 "***************************
 "        検索設定
-"***************************
+"**********************"{{{
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
 
+"}}}
 "********************************
 "    インデントおよびタブ 
-"********************************
+"****************************"{{{
 set tabstop=4
 set expandtab
 set shiftwidth=4
@@ -86,12 +87,21 @@ if ((v:version == 704 && has("patch785")) || v:version >= 705)
 endif
 
 
+"}}}
+"********************************
+"       文字コード関係           
+"****************************"{{{
 set encoding=utf-8
 set fileencodings=utf-8,sjis
 set fileformats=unix,dos,mac
 
 set ambiwidth=double
 set backspace=indent,eol,start
+
+"}}}
+"********************************
+"         入力関係
+"****************************"{{{
 
 "コマンド補完時に候補表示 "{{{1
 set wildmenu wildmode=list:longest,full 
@@ -101,6 +111,9 @@ set wildmenu wildmode=list:longest,full
 set iminsert=0
 set imsearch=-1
 
+"********************************
+"        色設定 
+"********************************
 "256 Color
 set t_Co=256
 
@@ -111,7 +124,6 @@ filetype plugin indent on
 "ハイライト関係の設定 "{{{1
 augroup ColorScheme
     au!
-    au * highlight Comment ctermfg=22 guifg=#008800
     "Tab Color {{{2
     au * hi TabLineSel ctermfg=Black ctermbg=White
     au * hi TabLine    ctermfg=white ctermbg=Black
@@ -121,12 +133,25 @@ augroup ColorScheme
     au * hi CursorLine   cterm=underline
 
     " コメントハイライト 設定 {{{2
+    au * highlight Comment ctermfg=22 guifg=#008800
+
+    " コメントキーワードハイライト 設定 {{{2
     au * syn match   myTodo   contained   "\<\(TBD\|TODO\|FIXME\):"
     au * hi def link myTodo Todo
 
     "ビジュアルモードハイライト設定 {{{2
     au * highlight Visual termfg=236 ctermfg=236 guifg=#000000
     au * highlight Visual termbg=250 ctermbg=250 guibg=#777777
+
+    "アクティブなステータスラインの設定 {{{2
+    au * highlight StatusLine termfg=236 ctermfg=236 guifg=#000000
+    au * highlight StatusLine termbg=250 ctermbg=250 guibg=#777777
+
+    "非アクティブなステータスラインの設定 {{{2
+    au * highlight StatusLineNC termfg=236 ctermfg=236 guifg=#000000
+    au * highlight StatusLineNC termbg=250 ctermbg=250 guibg=#777777
+
+    "}}}2
 augroup END
 
 "VimDiffでは空白の数の違いを無視 "{{{1
