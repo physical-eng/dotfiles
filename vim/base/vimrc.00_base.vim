@@ -41,13 +41,13 @@ set foldmethod=syntax "通常の折りたたみはシンタックス依存
 set foldcolumn=5     " 画面の左端に折りたたみ表示用の列を5列表示
 
 set winwidth=100 "カレントウインドウの最低限の幅
-set winheight=20 "カレントウインドウの最低限の高さ
+set winheight=15 "カレントウインドウの最低限の高さ
 set winminwidth=20  "カレント以外のウィンドウの最小幅
 set winminheight=10 "カレント以外のウインドウの最小高さ
 set display=lastline "長い行も最後まで表示
 
-set pumheight=10 "補完メニューの高さ
-set cmdheight=3
+set pumheight=5 "補完メニューの高さ
+set cmdheight=2
 set showcmd "入力中のコマンドをステータスラインに表示
 set laststatus=2
 set scrolloff=10
@@ -58,6 +58,7 @@ set showmatch
 set matchtime=1
 
 set list
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 set number
 set nowrap
 set tw=0
@@ -141,7 +142,6 @@ augroup MyColorScheme
     "アクティブなタブ/ステータスラインの設定 {{{2
     au ColorScheme * hi TabLineSel cterm=bold ctermfg=cyan ctermbg=236  guifg=#000000 guibg=#777777
     au ColorScheme * hi StatusLine cterm=bold ctermfg=cyan ctermbg=236  guifg=#000000 guibg=#777777
-    au ColorScheme,WinEnter * hi ctermbg=236  guifg=#000000 guibg=#777777
 
     "非アクティブなタブ/ステータスラインの設定 {{{2
     au ColorScheme * hi TabLine       cterm=NONE ctermfg=250 ctermbg=233 
