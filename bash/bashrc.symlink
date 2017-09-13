@@ -48,11 +48,12 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 fi
 
-export EDITOR='vim'
-export SHELL='bash'
-
+#
 # Source tmuxinator
 if [ -f ~/.tmuxinator/tmuxinator.bash ]; then
+    export EDITOR='vim'
+#    export SHELL='bash'
+export PATH="$HOME/bin:$PATH"
     source ~/.tmuxinator/tmuxinator.bash
 fi
-
+#
