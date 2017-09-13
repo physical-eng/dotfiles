@@ -124,8 +124,6 @@ set background=dark
 augroup MyColorScheme
     au!
     "Tab Color {{{2
-    au ColorScheme * hi TabLineSel ctermfg=Black ctermbg=White
-    au ColorScheme * hi TabLine    ctermfg=white ctermbg=Black
 
     "カーソルの色 {{{2
     au ColorScheme * hi CursorColumn ctermbg=8
@@ -143,12 +141,12 @@ augroup MyColorScheme
     au ColorScheme * highlight Visual  ctermbg=250 guibg=#777777
 
     "アクティブなステータスラインの設定 {{{2
-    au ColorScheme * highlight StatusLine ctermfg=236 guifg=#000000
-    au ColorScheme * highlight StatusLine ctermbg=250 guibg=#777777
+    au ColorScheme * hi TabLineSel cterm=bold ctermfg=cyan ctermbg=16  guifg=#000000 guibg=#777777
+    au ColorScheme * hi StatusLine cterm=bold ctermfg=cyan ctermbg=16  guifg=#000000 guibg=#777777
 
     "非アクティブなステータスラインの設定 {{{2
-    au ColorScheme * highlight StatusLineNC  ctermfg=236 guifg=#000000
-    au ColorScheme * highlight StatusLineNC  ctermbg=250 guibg=#777777
+    au ColorScheme * hi TabLine       ctermfg=gray ctermbg=16
+    au ColorScheme * hi StatusLineNC  ctermfg=236 ctermbg=250 guifg=#000000 guibg=#777777
     "}}}2
 augroup END
 
