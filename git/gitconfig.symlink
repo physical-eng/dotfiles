@@ -23,6 +23,7 @@
         dic = diff -w --cached
         dis = "!f(){ cmd=\"git di ${@:1} -- *.sv *.v *.c *.h *.qsys\"; echo $cmd; eval $cmd; };f"
         dn  = diff -w --name-only
+        dns = "!f(){ cmd=\"git dn ${@:1} -- *.sv *.v *.c *.h *.qsys\"; echo $cmd; eval $cmd; };f"
         cp  = cherry-pick
         cpn = cherry-pick --no-commit
         stu = status -uno
