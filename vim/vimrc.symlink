@@ -1,6 +1,7 @@
 "set shellslash
 set runtimepath+=~/.dotfiles/vim
 
+source ~/.dotfiles/vim/base/vimrc.00_base.vim
 runtime! base/*.vim
 
 if DeinIsInstalled()

@@ -150,7 +150,6 @@ augroup ColorScheme
     "非アクティブなステータスラインの設定 {{{2
     au * highlight StatusLineNC termfg=236 ctermfg=236 guifg=#000000
     au * highlight StatusLineNC termbg=250 ctermbg=250 guibg=#777777
-
     "}}}2
 augroup END
 
