@@ -31,6 +31,7 @@ nnoremap z<S-v> zMzv
 
 syntax on
 set hidden
+set autoread
 
 set nf="" "C-aのインクリメント時に8進数表記を10進数として認識
 
