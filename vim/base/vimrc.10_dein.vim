@@ -37,15 +37,19 @@ function! InstallPlugins()
     endif
 
 
-    augroup DeinStarter
-        au!
-        " 不足プラグインの自動インストール
-        if has('vim_starting') && dein#check_install()
+
+endfunction "}}}
+
+" 不足プラグインの自動インストール "{{{1
+function! ReloadPlugins()
+        "if has('vim_starting') && dein#check_install()
+        if dein#check_install()
             call dein#install()
         endif
+    augroup DeinStarter
+        au!
         autocmd VimEnter * call dein#call_hook('post_source')
     augroup END
-
 endfunction "}}}
 
 " deinがインストールされていない場合、dein自体のインストール関数を定義
