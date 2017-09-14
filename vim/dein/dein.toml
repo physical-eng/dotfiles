@@ -100,6 +100,9 @@ repo =  'idanarye/vim-merginal'
 
 [[plugins]]
 repo =  'cohama/agit.vim'
+hook_add='''
+let g:agit_max_log_lines=3000
+'''
 
 #Align
 [[plugins]]

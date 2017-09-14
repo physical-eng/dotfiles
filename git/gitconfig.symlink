@@ -76,3 +76,5 @@
 #        smudge =  cat
 #        clean  = cat
     
+[rebase]
+	autosquash = true
