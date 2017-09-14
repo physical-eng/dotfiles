@@ -46,3 +46,7 @@ hook_add='''
 [[plugins]]
 repo =  'gregsexton/gitv'
 depends='vim-fugitive'
+
+#[[plugins]]
+#repo =  'cohama/agit.vim'
+

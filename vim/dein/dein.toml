@@ -97,9 +97,9 @@ hook_add='''
 '''
 [[plugins]]
 repo =  'idanarye/vim-merginal'
-#"[[plugins]]
-#"repo =  'cohama/agit.vim'
 
+[[plugins]]
+repo =  'cohama/agit.vim'
 
 #Align
 [[plugins]]
