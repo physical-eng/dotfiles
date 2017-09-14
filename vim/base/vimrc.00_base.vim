@@ -248,6 +248,6 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 
 "まさかのマウス
-set mouse=a
+set mouse=n
 set ttymouse=xterm2
 set virtualedit+=all
