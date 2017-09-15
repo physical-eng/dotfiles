@@ -78,3 +78,6 @@
     
 [rebase]
 	autosquash = true
+	conflictstyle = diff3
+[merge]
+	conflictstyle = diff3
