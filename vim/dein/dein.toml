@@ -157,14 +157,22 @@ repo =  'christoomey/vim-tmux-navigator'
 #"VimDiff by histogram
 #[[plugins]]
 #repo =  'lambdalisue/vim-unified-diff'
-#[[plugins]]
-#repo =  'chrisbra/vim-diff-enhanced'
+[[plugins]]
+repo =  'chrisbra/vim-diff-enhanced'
 #
 #"Calendar
 #[[plugins]]
 #repo =  'itchyny/calendar.vim'
 #
-#"DiffChar
-#"[[plugins]]
-#"repo =  'vim-scripts/diffchar.vim'
+#DiffChar
+[[plugins]]
+repo =  'vim-scripts/diffchar.vim'
+hook_post_source='''
+if &diff
+  augroup enable_diffchar
+    autocmd!
+    autocmd VimEnter * execute "%SDChar"
+  augroup END
+endif
+'''
 #
