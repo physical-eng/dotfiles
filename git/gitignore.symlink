@@ -6,6 +6,8 @@
 *.DS_STORE
 *.flock
 
+Session.vim
+
 #Objects
 *.o
 *.d
@@ -29,3 +31,12 @@ tags
 #Backup
 *.bak
 _*
+*.BAK
+
+*.orig
+*.rej
+
+
+*.log
+*.patch
+
