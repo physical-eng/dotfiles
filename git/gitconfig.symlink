@@ -19,7 +19,7 @@
         cm  = commit --amend
         ca  = commit -a
         br  = branch
-        di  = diff -w --word-diff 
+    di  = diff -w --word-diff=color
         dic = diff -w --cached
         dis = "!f(){ cmd=\"git di ${@:1} -- *.sv *.v *.c *.h *.qsys\"; echo $cmd; eval $cmd; };f"
         dn  = diff -w --name-only
