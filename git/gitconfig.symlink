@@ -72,9 +72,7 @@
         #clean  =  perl -0pe 's/(datum\\ssopceditor_expanded\\s*.*\\s*value\\s=)(\\s\".\")/\\1 \"0\"/gm'
         clean = vi -es /dev/stdin +\":%s/\\([^>}]\\)\\n/\\1 /ge | %s/}\\n \\+}/} }/ge | %s/ \\+/ /ge | %s/^\\s\\+//ge | %s/^\\(.*sopceditor_expanded.*value\\) = \\\"1\\\"/\\1 = \\\"0\\\"/e\" +%p +q!
 
-    
-#        smudge =  cat
-#        clean  = cat
+#        clean = vi -es /dev/stdin +\":norm Go\" +%p +q!
     
 [rebase]
 	autosquash = true
