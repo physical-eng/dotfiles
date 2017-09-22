@@ -129,8 +129,22 @@ repo =  'kshenoy/vim-signature'
 [[plugins]]
 repo =  'tpope/vim-surround'
 #
-#[[plugins]]
-#repo =  'thinca/vim-quickrun'
+[[plugins]]
+repo =  'thinca/vim-quickrun'
+hook_post_source='''
+let g:quickrun_config={'_': {'split': 'vertical'}}
+
+let g:quickrun_no_default_key_mappings = 1
+
+nnoremap <Leader>r :write<CR>:QuickRun -mode n<CR>        
+xnoremap <Leader>r :<C-U>write<CR>gv:QuickRun -mode v<CR> 
+
+let g:quickrun_no_default_key_mappings = 1
+nnoremap <Leader>r :cclose<CR>:write<CR>:QuickRun -mode n<CR>
+xnoremap <Leader>r :<C-U>cclose<CR>:write<CR>gv:QuickRun -mode v<CR>
+
+nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+'''
 #
 #[[plugins]]
 #repo =  'wannesm/wmgraphviz.vim'
