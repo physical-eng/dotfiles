@@ -22,7 +22,7 @@ alias :q=exit
 alias gitdiff="git difftool --tool=vimdiff --no-prompt"
 alias gitcd="cd \`git rev-parse --show-toplevel\`"
 alias dum="du --max-depth=1 -h"
-alias ll="ls -l --time-style=long-iso"
+alias ll="ls -lt --time-style=long-iso"
 
 #GIT
 
