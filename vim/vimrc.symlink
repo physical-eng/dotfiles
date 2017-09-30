@@ -8,7 +8,7 @@ if DeinIsInstalled()
 endif
 
 if !filereadable (expand("~/.vimrc.local"))
-    if !filereadable (expand("~/.dotfiles/vim/vimrc.local")
+    if !filereadable (expand("~/.dotfiles/vim/vimrc.local"))
         call system("touch ~/.vimrc.local")
     else
         call system("cp ~/.dotfiles/vim/vimrc.local ~/.vimrc.local")
