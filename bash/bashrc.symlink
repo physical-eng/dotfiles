@@ -22,8 +22,8 @@ alias sudo='sudo -E '
 alias :q='exit ' 
 alias gitdiff="git difftool --tool=vimdiff --no-prompt " 
 alias gitcd="cd \`git rev-parse --show-toplevel\` " 
-alias du="ionice -c2 -n7 nice -n19 du -scm" 
-alias dum="du ./* ./.[^.]* | sort -rn " 
+alias du="ionice -c2 -n7 nice -n19 du -cm" 
+alias dum="du --max-depth=0 ./* ./.[^.]* " 
 alias ll="ls -lt --time-style=long-iso " 
 
 #GIT
