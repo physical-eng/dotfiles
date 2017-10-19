@@ -15,6 +15,7 @@
     tro = log --graph                                      --pretty=format:'\t\t%C(yellow)%h%Creset %Creset %<(90)%s %Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
     trc = log --oneline  --date=format:'%Y/%m/%d %H:%M:%S' --pretty=format:'%h [%cd]  <%an> %s  %d '
     co  = checkout
+    cb  = git-new-branch
     ci  = commit
     cm  = commit --amend
     ca  = commit -a
