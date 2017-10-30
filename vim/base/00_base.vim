@@ -94,7 +94,7 @@ endif
 "       文字コード関係           
 "****************************"{{{
 set encoding=utf-8
-set fileencodings=utf-8,sjis
+set fileencodings=utf-8,cp932,sjis
 set fileformats=unix,dos,mac
 
 set ambiwidth=double
