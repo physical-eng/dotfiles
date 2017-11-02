@@ -66,9 +66,6 @@ inoremap <S-F10> <ESC>:VimShellBufferDir -toggle<CR>
 noremap  <F6> <Nop>
 nnoremap <F6> :!vlib R:\\modelsim\\work && vmap work R:\\modelsim\\work<CR>
 
-"Choose Win {{{1
-nnoremap - :ChooseWin<CR>
-
 "grep {{{1
 nnoremap * <Nop>
 nnoremap * /\<<C-R><C-W>\><CR>:vim /\<<C-R><C-W>\>/ %<CR>

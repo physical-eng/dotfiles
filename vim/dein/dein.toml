@@ -161,8 +161,11 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 #"[[plugins]]
 #"repo =  'vim-scripts/Conque-GDB'
 #
-[[plugins]]
-repo =  't9md/vim-choosewin'
+#[[plugins]]
+#repo =  't9md/vim-choosewin'
+#hook_post_source='''
+#nnoremap - :ChooseWin<CR>
+#'''
 
 #"TMUX
 [[plugins]]
