@@ -181,15 +181,15 @@ repo =  'chrisbra/vim-diff-enhanced'
 #[[plugins]]
 #repo =  'itchyny/calendar.vim'
 #
-#DiffChar
-[[plugins]]
-repo =  'vim-scripts/diffchar.vim'
-hook_post_source='''
-if &diff
-  augroup enable_diffchar
-    autocmd!
-    autocmd VimEnter * execute "%SDChar"
-  augroup END
-endif
-'''
+##DiffChar
+#[[plugins]]
+#repo =  'vim-scripts/diffchar.vim'
+#hook_post_source='''
+#if &diff
+#  augroup enable_diffchar
+#    autocmd!
+#    autocmd VimEnter * execute "%SDChar"
+#  augroup END
+#endif
+#'''
 #
