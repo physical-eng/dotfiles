@@ -23,8 +23,17 @@ alias :q='exit '
 alias gitdiff="git difftool --tool=vimdiff --no-prompt " 
 alias gitcd="cd \`git rev-parse --show-toplevel\` " 
 alias du="ionice -c2 -n7 nice -n19 du -cm" 
-alias dum="du -b --max-depth=0 ./* ./.[^.]* | sort -n | numfmt --to=iec --suffix=B --format %.2f" 
+#alias dum="du -b --max-depth=0 ./* ./.[^.]* | sort -n | numfmt --to=iec --suffix=B --padding=6" 
+#alias dum="du -b --max-depth=0 ./* ./.[^.]* | sort -n | numfmt --to=iec --suffix=B --padding=6" 
 alias ll="ls -lt --time-style=long-iso " 
+
+function dum() {
+    if [ $# -eq 0 ]; then
+        echo "du -b --max-depth=0 ./* ./.[^.]* | sort -n | numfmt --to=iec --suffix=B --padding=6" 
+    elif [ $# -eq 1]; then
+        echo "du $1 -b --max-depth=0 | sort -n | numfmt --to=iec --suffix=B --padding=6" 
+    fi
+}
 
 #GIT
 
