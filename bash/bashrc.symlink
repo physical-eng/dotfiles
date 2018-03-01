@@ -69,3 +69,7 @@ export PATH="$HOME/bin:$PATH"
     source ~/.tmuxinator/tmuxinator.bash
 fi
 #
+
+export ALTERAOCLSDKROOT="/home/ito.nobuo/share/altera/17.1s/hld"
+
+export QSYS_ROOTDIR="/home/ito.nobuo/share/altera/17.1s/quartus/sopc_builder/bin"
