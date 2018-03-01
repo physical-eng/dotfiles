@@ -43,7 +43,7 @@ let g:choosewin_overlay_enable = 1
 let g:choosewin_overlay_clear_multibyte = 1
 
 "Ctags {{{1
-set tags=tags
+set tags=./tags;,tags;
 
 "TagList
 let Tlist_Show_One_File = 0 "現在編集中のソースのタグしか表示しない
