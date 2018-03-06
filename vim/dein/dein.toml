@@ -192,4 +192,8 @@ repo =  'chrisbra/vim-diff-enhanced'
 #  augroup END
 #endif
 #'''
+#"NeoSnippet
+[[plugins]]
+repo =  'Shougo/neosnippet-snippets'
+
 #
