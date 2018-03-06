@@ -172,7 +172,14 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 repo =  'christoomey/vim-tmux-navigator'
 
 #"VimDiff by histogram
-#[[plugins]]
+#[[plugins]]                                                          #"NeoSnippet
+[[plugins]]
+repo = 'Shougo/neosnippet'
+depends = ['neosnippet-snippets']
+on_i = 1
+on_ft = ['snippet']
+
+
 #repo =  'lambdalisue/vim-unified-diff'
 [[plugins]]
 repo =  'chrisbra/vim-diff-enhanced'
@@ -195,5 +202,9 @@ repo =  'chrisbra/vim-diff-enhanced'
 #"NeoSnippet
 [[plugins]]
 repo =  'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo =  'honza/vim-snippets'
+
 
 #
