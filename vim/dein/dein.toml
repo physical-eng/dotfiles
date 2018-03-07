@@ -73,6 +73,10 @@ repo =  'sjl/badwolf'
 [[plugins]]
 repo =  'vim-scripts/twilight'
 [[plugins]]
+repo =  'vim-scripts/simplewhite'
+[[plugins]]
+repo =  'vim-scripts/industry'
+[[plugins]]
 repo =  'vim-scripts/baycomb'
 [[plugins]]
 repo =  "w0ng/vim-hybrid"
@@ -161,18 +165,19 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 #"[[plugins]]
 #"repo =  'vim-scripts/Conque-GDB'
 #
-#[[plugins]]
-#repo =  't9md/vim-choosewin'
-#hook_post_source='''
-#nnoremap - :ChooseWin<CR>
-#'''
+[[plugins]]
+repo =  't9md/vim-choosewin'
+hook_post_source='''
+nnoremap - :ChooseWin<CR>
+'''
 
 #"TMUX
 [[plugins]]
 repo =  'christoomey/vim-tmux-navigator'
 
 #"VimDiff by histogram
-#[[plugins]]                                                          #"NeoSnippet
+#[[plugins]]
+#"NeoSnippet
 [[plugins]]
 repo = 'Shougo/neosnippet'
 depends = ['neosnippet-snippets']
