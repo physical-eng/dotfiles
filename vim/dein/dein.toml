@@ -73,9 +73,9 @@ repo =  'sjl/badwolf'
 [[plugins]]
 repo =  'vim-scripts/twilight'
 [[plugins]]
-repo =  'vim-scripts/simplewhite'
+repo =  'vim-scripts/simplewhite.vim'
 [[plugins]]
-repo =  'vim-scripts/industry'
+repo =  'vim-scripts/industry.vim'
 [[plugins]]
 repo =  'vim-scripts/baycomb'
 [[plugins]]
