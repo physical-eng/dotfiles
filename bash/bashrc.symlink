@@ -27,6 +27,8 @@ alias dumb="du -b --max-depth=0 ./* ./.[^.]*"
 #alias dum="du -b --max-depth=0 ./* ./.[^.]* | sort -n | numfmt --to=iec --suffix=B --padding=6" 
 alias ll="ls -lt --time-style=long-iso " 
 
+function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
+
 function dum() {
     if [ $# -eq 0 ]; then
         dumb | sort -n | numfmt --to=iec --suffix=B --padding=6 
