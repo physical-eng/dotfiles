@@ -35,6 +35,9 @@ repo =  'Shougo/neomru.vim'
 [[plugins]]
 repo =  'Shougo/unite.vim'
 depends = 'neomru.vim'
+hook_add='''
+let g:neomru#file_mru_ignore_pattern = substitute(g:neomru#directory_mru_ignore_pattern,"/mnt/\\\\|","","g")
+'''
 
 #############
 # Denite
