@@ -152,6 +152,10 @@ xnoremap <Leader>r :<C-U>cclose<CR>:write<CR>gv:QuickRun -mode v<CR>
 
 nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
 '''
+
+[[plugins]]
+repo =  'vim-scripts/errormarker.vim'
+
 #
 #[[plugins]]
 #repo =  'wannesm/wmgraphviz.vim'
