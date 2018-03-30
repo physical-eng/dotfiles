@@ -2,11 +2,6 @@
 repo =  'scrooloose/syntastic'
 on_ft = ['c','verilog','systemverilog']
 
-##Verilog
-#[[plugins]]
-#repo =  "vhda/verilog_systemverilog.vim"
-#on_ft=
-
 #Table Mode
 [[plugins]]
 repo =  'dhruvasagar/vim-table-mode'

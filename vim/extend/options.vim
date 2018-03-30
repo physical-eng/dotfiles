@@ -23,6 +23,7 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 ".vh,.vtのファイルをSystemVerilogとして認識 {{{1
 au BufRead,BufNewFile *.vh set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.vt set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.v  set filetype=verilog_systemverilog
 
 ".vb.bas, vb.clsのファイルをVBとして認識 {{{1
 au BufRead,BufNewFile *.vb.bas set filetype=VB

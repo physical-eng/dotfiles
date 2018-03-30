@@ -220,3 +220,7 @@ repo =  'honza/vim-snippets'
 
 
 #
+##Verilog
+[[plugins]]
+repo =  "vhda/verilog_systemverilog.vim"
+
