@@ -1,6 +1,6 @@
 [[plugins]]
 repo =  'scrooloose/syntastic'
-on_ft = ['c','verilog','systemverilog']
+on_ft = ['c','verilog','systemverilog','verilog_systemverilog']
 
 #Table Mode
 [[plugins]]
@@ -24,7 +24,7 @@ on_i = 1
 ####################
 [[plugins]]
 repo =  'vim-scripts/taglist.vim'
-on_ft=['c']
+on_ft = ['c','verilog','systemverilog','verilog_systemverilog']
 
 ###############
 # Git
