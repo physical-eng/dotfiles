@@ -1,4 +1,8 @@
 [[plugins]]
+repo =  'vim-scripts/jcommenter.vim'
+on_ft = ['c','java','verilog','systemverilog','verilog_systemverilog']
+
+[[plugins]]
 repo =  'scrooloose/syntastic'
 on_ft = ['c','verilog','systemverilog','verilog_systemverilog']
 
