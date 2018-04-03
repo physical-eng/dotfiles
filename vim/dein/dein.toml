@@ -188,7 +188,7 @@ repo =  'christoomey/vim-tmux-navigator'
 [[plugins]]
 repo = 'Shougo/neosnippet'
 depends = ['neosnippet-snippets']
-on_i = 1
+#on_i = 1
 
 
 #repo =  'lambdalisue/vim-unified-diff'
