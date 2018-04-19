@@ -28,6 +28,7 @@
     cp  = cherry-pick
     cpn = cherry-pick --no-commit
     stu = status -uno
+    modereset = "!f(){ cmd=\"git diff --numstat | awk '{if (($1 == \"0\" && $2 == \"0\") || ($1 == \"-\" && $2 == \"-\")) print $3}' | xargs git checkout HEAD\"; echo $cmd; };f"
 
 
 [color]
