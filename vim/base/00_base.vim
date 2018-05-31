@@ -7,6 +7,9 @@ inoremap <C-j> <NL>
 "挿入モードにおいてCtrl+lでDel {{{1
 inoremap <C-l> <Del>
 
+"通常モードで<ESC>でハイライトOFF {{{1
+nnoremap <silent> jj :noh<CR>j
+
 "<Leader> {{{1
 let mapleader      = "\<Space>"
 let maplocalleader = "\<Space>"
