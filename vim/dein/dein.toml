@@ -184,11 +184,27 @@ repo =  'christoomey/vim-tmux-navigator'
 
 #"VimDiff by histogram
 #[[plugins]]
+
 #"NeoSnippet
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_post_source='''
+let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
 [[plugins]]
 repo = 'Shougo/neosnippet'
 depends = ['neosnippet-snippets']
 #on_i = 1
+hook_post_source='''
+let g:neosnippet#snippets_directory=~/.dotfiles/vim/snippets
+'''
 
 
 #repo =  'lambdalisue/vim-unified-diff'
