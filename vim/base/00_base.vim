@@ -62,6 +62,7 @@ set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 set number
 set nowrap
+set colorcolumn=80
 set tw=0
 
 set cursorcolumn
@@ -130,6 +131,9 @@ augroup MyColorScheme
     au ColorScheme * hi CursorColumn ctermbg=8
     au ColorScheme * hi CursorLine   cterm=underline
 
+    "折り返しの代わりにハイライト
+    au ColorScheme * hi ColorColumn ctermbg=237
+    
     " コメントハイライト 設定 {{{2
     au ColorScheme * highlight Comment ctermfg=darkgreen guifg=#008800
 
@@ -148,8 +152,6 @@ augroup MyColorScheme
     au ColorScheme * hi TabLine       cterm=NONE ctermfg=250 ctermbg=233 
     au ColorScheme * hi StatusLineNC  cterm=NONE ctermfg=250 ctermbg=233 
 
-    "非アクティブなタブ/ステータスラインの設定 {{{2
-    au ColorScheme * hi ColorColumn ctermbg=9
     "}}}2
 augroup END
 
