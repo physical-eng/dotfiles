@@ -147,6 +147,9 @@ augroup MyColorScheme
     "非アクティブなタブ/ステータスラインの設定 {{{2
     au ColorScheme * hi TabLine       cterm=NONE ctermfg=250 ctermbg=233 
     au ColorScheme * hi StatusLineNC  cterm=NONE ctermfg=250 ctermbg=233 
+
+    "非アクティブなタブ/ステータスラインの設定 {{{2
+    au ColorScheme * hi ColorColumn ctermbg=9
     "}}}2
 augroup END
 
