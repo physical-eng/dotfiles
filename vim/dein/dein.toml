@@ -115,7 +115,7 @@ let g:agit_max_log_lines=3000
 [[plugins]]
 repo =  'vim-scripts/Align'
 hook_add='''
-vnoremap L :AlignCtrl Cllllrlp01110P0101 | '<,'>Align \. ( ) // \. | AlignCtrl =lp1P1 <CR>
+vnoremap <S-l> :AlignCtrl Cllllrlp01110P0101<CR>:'<,'>Align \. ( ) // \.<CR>:AlignCtrl =lp1P1 <CR>
 '''
 
 #[[plugins]]
