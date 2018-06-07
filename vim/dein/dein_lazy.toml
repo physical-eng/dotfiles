@@ -7,6 +7,9 @@ on_ft = ['c','java','verilog','systemverilog','verilog_systemverilog']
 [[plugins]]
 repo =  'scrooloose/syntastic'
 on_ft = ['c','verilog','systemverilog','verilog_systemverilog']
+hook_add='''
+let g:syntastic_verilog_systemverilog_checkers=['verilator']
+'''
 
 #Table Mode
 [[plugins]]
