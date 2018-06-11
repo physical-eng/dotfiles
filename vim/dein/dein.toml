@@ -154,6 +154,7 @@ nnoremap <Leader>r :cclose<CR>:write<CR>:QuickRun -mode n<CR>
 xnoremap <Leader>r :<C-U>cclose<CR>:write<CR>gv:QuickRun -mode v<CR>
 
 nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+au QuickfixCmdPost make,grep,grepadd,vimgrep copen
 '''
 
 [[plugins]]
