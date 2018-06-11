@@ -13,16 +13,16 @@ nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gt :Git tr<CR>
 
 "スニペット {{{1
-imap <expr><C-k>
-            \ neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
-
-smap <expr><C-k>
-            \ neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
-
-xmap <C-k> <Plug>(neosnippet_expand_target)
-
+"imap <expr><C-k>
+"            \ neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
+"            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
+"
+"smap <expr><C-k>
+"            \ neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
+"            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
+"
+"xmap <C-k> <Plug>(neosnippet_expand_target)
+"
 "Ctrl+Eでカーソル下の単語をファイル名として開く {{{1
 noremap <C-e> <Nop>
 noremap <C-e> :lcd %:h<CR>:e <C-r><C-w><Tab>
