@@ -260,4 +260,9 @@ repo =  'honza/vim-snippets'
 ##Verilog
 [[plugins]]
 repo =  "vhda/verilog_systemverilog.vim"
+hook_post_source='''
+    au BufNewFile,BufRead *.v setfiletype verilog_systemverilog.verilog
+    au BufNewFile,BufRead *.sv setfiletype verilog_systemverilog.systemverilog
+'''
+
 

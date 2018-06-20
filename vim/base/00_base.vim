@@ -229,6 +229,10 @@ au BufNewFile *.md set filetype=markdown fenc=utf-8 ff=unix
 "拡張子 plt をgnuplotファイルとして認識 {{{1
 au BufRead, BufNewFile *.plt set filetype=gnuplot
 
+"拡張子 sv を systemverilogファイルとして認識 {{{1
+au BufNewFile,BufRead *.v setfiletype verilog_systemverilog.verilog
+au BufNewFile,BufRead *.sv setfiletype verilog_systemverilog.systemverilog
+
 "Verilog/vimrcは折りたたみをマーカーで {{{1
 au BufRead *.vim setlocal foldmethod=marker
 au BufRead *.v setlocal foldmethod=marker
