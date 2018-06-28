@@ -1,0 +1,93 @@
+# vim : ft=neosnippet #
+
+snippet header
+abbr header declaration
+    #ifndef ___${1:`expand("%:t:r")`}_H_INCLUDED___
+    #define ___$1_H_INCLUDED___
+    /*
+     ******************************************************************************************
+     * Filename     : `expand("%:t")`
+     * Function     : $1
+     * Description  : ${2}
+     * Program      : 
+     *              :
+     * Author       : 伊東信雄@AVCT
+     * Date(org)    : `strftime('%m/%d/%Y')` (`strftime('%m/%d/%Y')`)
+     * Update       : 修正履歴
+     *              : `strftime('%m/%d/%Y')` 伊東信雄@AVCT
+     *              :   新規作成
+     * Copyright    : Persol AVC Technology Co., Ltd.
+     ******************************************************************************************
+     */
+
+     #endif /* ___$1_H_INCLUDED___*/
+
+snippet clib
+abbr c file template
+    /*
+     ******************************************************************************************
+     * Filename     : `expand("%:t")`
+     * Function     : ${1}
+     * Description  : ${2}
+     * Program      : 
+     *              :
+     * Author       : 伊東信雄@AVCT
+     * Date(org)    : `strftime('%m/%d/%Y')` (`strftime('%m/%d/%Y')`)
+     * Update       : 修正履歴
+     *              : `strftime('%m/%d/%Y')` 伊東信雄@AVCT
+     *              :   新規作成
+     * Copyright    : Persol AVC Technology Co., Ltd.
+     ******************************************************************************************
+     */
+
+    /*
+     ****************************
+     *	インクルード
+     ****************************
+     */
+
+
+    /*
+     ****************************
+     *	マクロ宣言
+     ****************************
+     */
+
+
+    /*
+     ****************************
+     *	変数宣言
+     ****************************
+     */
+
+    /*
+     ****************************
+     *	プロトタイプ宣言
+     ****************************
+     */
+
+snippet func
+abbr function declare
+     ${1:#:void func()};
+    /*
+     ******************************************************************************************
+     * Title		: $1
+     * Function		: 
+     * Description	:
+     *              :
+     * Input        :
+     *              :
+     * Output       :
+     *              ]
+     * Author       : 伊東信雄@AVCT
+     * Date(org)    : `strftime('%m/%d/%Y')` (`strftime('%m/%d/%Y')`)
+     * Update       : 修正履歴
+     *              : `strftime('%m/%d/%Y')` 伊東信雄@AVCT
+     *              :   新規作成
+     * Copyright    : Persol AVC Technology Co., Ltd.
+     ******************************************************************************************
+     */
+    $1
+    {
+    }
+

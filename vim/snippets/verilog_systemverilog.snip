@@ -1,0 +1,134 @@
+# vim : ft=neosnippet #
+snippet mod
+abbr module declaration
+     /**
+     * @file `expand("%:t")`
+     * @brief ${1}
+     * @author Nobuo Ito
+     */
+    \`timescale 1ns/1ps
+    \`default_nettype none
+    module `expand("%:t:r")`
+    (
+        clk_i      ,
+        areset_n_i ,
+    ${2}
+    );
+    /*************************************************************************/
+    /* Parameters                                                            */
+    /*************************************************************************/
+
+    /*************************************************************************/
+    /* Local Parameter                                                       */
+    /*************************************************************************/
+
+    /*************************************************************************/
+    /* Port Declaration                                                      */
+    /*************************************************************************/
+    input  wire clk_i      ; /* 動作クロック入力   */
+    input  wire areset_n_i ; /* 非同期リセット入力 */
+
+    /*************************************************************************/
+    /* Registers                                                             */
+    /*************************************************************************/
+
+    /*************************************************************************/
+    /* Wire and Assignments                                                 */
+    /*************************************************************************/
+
+    /*************************************************************************/
+    /* Submodules                                                            */
+    /*************************************************************************/
+
+ endmodule
+ \`default_nettype wire
+
+snippet inp
+abbr input declaration
+    input  wire           ${3:#:name}_r ; /* ${4:#:comment} */
+    reg           $3_r ; /* $4 */${0}
+
+snippet ina
+abbr input declaration
+    input  wire  [${1:#:MSB}:${2:0}] ${3:#:name}_r ; /* ${4:#:comment} */
+    reg   [$1:$2] $3_r ; /* $4 */${0}
+
+snippet outp
+abbr output declaration
+    output wire           ${3:#:name}_r ; /* ${4:#:comment} */
+    reg           $3_r ; /* $4 */${0}
+
+snippet outa
+abbr output declaration
+    output wire  [${1:#:MSB}:${2:0}] ${3:#:name}_r ; /* ${4:#:comment} */
+    reg   [$1:$2] $3_r ; /* $4 */
+
+snippet wire
+abbr wire declaration
+ wire           ${3:#:name}_w ; /** ${4:#:comment} */
+
+
+snippet wirea
+abbr wire declaration
+ wire  [${1:#:MSB}:${2:0}] ${3:#:name}_w ; /** ${4:#:comment} */
+
+
+snippet reg
+abbr register declaration
+ reg          ${3:#:name}_r ; /** ${4:#:comment} */
+
+
+snippet rega
+abbr register declaration
+ reg   [${1:#:MSB}:${2:0}] ${3:#:name}_r ; /** ${4:#:comment} */
+
+
+
+snippet alwcr
+abbr always structure with clock and async reset
+    /******************************************************/
+    /* ${1:#:description}*/
+    /******************************************************/
+    always @(posedge clk_i or negedge areset_n_i)
+    begin
+        if( !areset_n_i)
+        begin
+            ${2:#:reg} <= ${3:#:initial value} ;
+        end
+        else if( ${3:#:Statement} )
+        begin
+            $2 <= ${0}
+        end
+        else
+        begin
+            $2 <= $2 ;
+        end
+    end /* $1 */
+
+
+snippet keep
+alias ke
+abbr keep logic
+    ${1:TARGET} <= $1 ;
+
+snippet i2c
+abbr i2c tri-state logic
+
+    /* I2C Reference Logic (${1:TARGET}) */
+    wire        $1_sda_in_w   ; /*           $1.sda_in */
+    wire        $1_scl_in_w   ; /*                      .scl_in */
+    wire        $1_sda_oe_w   ; /*                      .sda_oe */
+    wire        $1_scl_oe_w   ; /*                      .scl_oe */
+
+    assign $1_sda_in_w =   $1_sda_io    ;
+    assign $1_sda_io   = ( $1_sda_oe_w )? (1'b0) : (1'bz) ;
+    assign $1_scl_in_w =   $1_scl_io    ;
+    assign $1_scl_io   = ( $1_scl_oe_w )? (1'b0) : (1'bz) ; 
+
+    ${0}
+
+snippet lim
+abbr  limit tri
+    ( ${1:TARGET} < ${2:#:Min} )? ( $2 ) :
+    ( $1 > ${3:#:Max} )? ( $3 ) : ( $1 );
+
