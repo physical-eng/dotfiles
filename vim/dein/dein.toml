@@ -265,4 +265,14 @@ hook_post_source='''
     au BufNewFile,BufRead *.sv setfiletype verilog_systemverilog.systemverilog
 '''
 
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
 
+[[plugins]]
+repo = 'vimwiki/vimwiki'
+hook_post_source='''
+nmap <Leader>wk <Plug>vimwikiindex
+let g:vimwiki_ext2syntax = {'.mkd':'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax':'markdown', 'ext':'.mkd'}]
+'''
+#on_ft=['markdown']
