@@ -14,6 +14,7 @@
     trg = log --graph    --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'\t\t%C(yellow)%h%Creset %Creset %<(60,trunc)%s \t%Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
     tro = log --graph                                      --pretty=format:'\t\t%C(yellow)%h%Creset %Creset %<(90)%s %Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
     trc = log --oneline  --date=format:'%Y/%m/%d %H:%M:%S' --pretty=format:'%h [%cd]  <%an> %s  %d '
+    re  = reflog         --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(yellow)%h%Creset \t%Creset %<(60,trunc)%s \t%Cgreen%<(15)%an%Creset %C(blue)%cd%Creset %Cred %d %Creset'
     co  = checkout
     cb  = git-new-branch
     ci  = commit
