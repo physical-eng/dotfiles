@@ -84,3 +84,7 @@
     conflictstyle = diff3
 [merge]
     conflictstyle = diff3
+[diff "text"]
+	textconv = nkf -w8
+[diff "properties"]
+	textconv = "native2ascii -reverse -encoding UTF-8 "
