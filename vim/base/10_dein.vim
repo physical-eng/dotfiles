@@ -13,7 +13,7 @@ function! DeinIsInstalled()
 endfunction
 
 "Deinによるプラグイン設定 {{{1
-function! InstallPlugins()
+function! s:InstallPlugins()
     augroup MyAutoCmd
         au!
     augroup END
@@ -35,9 +35,6 @@ function! InstallPlugins()
         call dein#end()
         call dein#save_state()
     endif
-
-
-
 endfunction "}}}
 
 " 不足プラグインの自動インストール "{{{1
@@ -61,7 +58,8 @@ if !DeinIsInstalled()
         call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
     endfunction
 else
-    call InstallPlugins()
+    call s:InstallPlugins()
+    call ReloadPlugins()
 endif
 
 

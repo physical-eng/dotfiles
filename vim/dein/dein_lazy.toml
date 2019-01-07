@@ -48,7 +48,7 @@ repo =  'rhysd/committia.vim'
 [[plugins]]
 repo ='tpope/vim-fugitive'
 depends='committia.vim'
-hook_add='''
+hook_post_source='''
     set statusline=%F%m%r%h%w\ %=%{fugitive#statusline()}\ \ [%Y,%{&ff}]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 '''
 

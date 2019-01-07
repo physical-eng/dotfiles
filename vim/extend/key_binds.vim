@@ -49,9 +49,9 @@ nnoremap <C-c> "*yy
 
 "VimfilerのIDE風表示 {{{1
 let g:vimfiler_enable_auto_cd = 0
-nnoremap <Leader>f     :VimFiler -split -toggle -direction=botright -winwidth=70 -no-quit -columns=type:size:time<CR>
-nnoremap <Leader>F     :VimFilerBufferDir -split -toggle -direction=botright -winwidth=70 -no-quit -columns=type:size:time<CR>
-nnoremap <Leader><C-f> :VimFiler -split -toggle -direction=botright -winwidth=70 -no-quit -columns=type:size:time 
+nnoremap <silent><Leader>f     :VimFiler -split -toggle -direction=botright -winwidth=70 -no-quit -columns=type:size:time<CR>
+nnoremap <silent><Leader>F     :VimFilerBufferDir -split -toggle -direction=botright -winwidth=70 -no-quit -columns=type:size:time<CR>
+nnoremap <silent><Leader><C-f> :VimFiler -split -toggle -direction=botright -winwidth=70 -no-quit -columns=type:size:time 
 
 "VimShell {{{1
 noremap <F10> <Nop>
