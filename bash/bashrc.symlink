@@ -1,5 +1,22 @@
 # .bashrc
 
+if [[ ! -n $TMUX ]]; then
+    # get the IDs
+    ID="`tmux list-sessions`"
+    if [[ -z "$ID" ]]; then
+        tmux new-session
+    fi
+    create_new_session="Create New Session"
+    ID="$ID\n${create_new_session}:"
+    ID="`echo $ID | $PERCOL | cut -d: -f1`"
+    if [[ "$ID" = "${create_new_session}" ]]; then
+        tmux new-session
+    elif [[ -n "$ID" ]]; then
+        tmux attach-session -t "$ID"
+    else
+        :  # Start terminal normally
+    fi
+fi
 # ZSH is undefined
 if [ -z "$ZSH" ] && [ "${ZSH:-A}" = "${ZSH-A}" ]; then 
     ZSH=$BASH
@@ -7,12 +24,12 @@ fi
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
 
 # Source local definitions
 if [ -f ~/.bashrc.local ]; then
-	. ~/.bashrc.local
+    . ~/.bashrc.local
 fi
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
@@ -25,7 +42,8 @@ alias gitcd="cd \`git rev-parse --show-toplevel\` "
 alias du="ionice -c2 -n7 nice -n19 du -cm" 
 alias dumb="du -b --max-depth=0 ./* ./.[^.]*"
 #alias dum="du -b --max-depth=0 ./* ./.[^.]* | sort -n | numfmt --to=iec --suffix=B --padding=6" 
-alias ll="ls -lt --time-style=long-iso " 
+alias ll="ls -lat --time-style=long-iso " 
+alias svim='sudoedit'
 
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
@@ -57,21 +75,20 @@ GIT_PS1_SHOWUPSTREAM=auto
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 # pyenv
 if [ -d ${HOME}/.pyenv ]; then
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
 fi
 
 #
 # Source tmuxinator
 if [ -f ~/.tmuxinator/tmuxinator.bash ]; then
     export EDITOR='vim'
-#    export SHELL='bash'
-export PATH="$HOME/bin:$PATH"
+    #    export SHELL='bash'
+    export PATH="$HOME/bin:$PATH"
     source ~/.tmuxinator/tmuxinator.bash
 fi
 #
 
-export ALTERAOCLSDKROOT="/home/ito.nobuo/share/altera/17.1s/hld"
 
-export QSYS_ROOTDIR="/home/ito.nobuo/share/altera/17.1s/quartus/sopc_builder/bin"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

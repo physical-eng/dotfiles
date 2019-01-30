@@ -143,6 +143,6 @@ set-window-option -g  main-pane-height 60
 set-window-option -g  main-pane-width 220
 select-layout main-horizontal
 
-#set -g @continuum-restore 'on'
+set -g @continuum-restore 'on'
 
 run-shell '~/.tmux/plugins/tpm/tpm'
