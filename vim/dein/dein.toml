@@ -15,7 +15,7 @@ hook_post_update = '''
   else
     let cmd = 'make -f make_unix.mak'
   endif
-  let g:dein#plugin.build = cmd
+    let g:dein#plugin.build = cmd
 '''
 #elseif dein#util#_is_cygwin()
 #    let cmd = 'make -f make_cygwin.mak'
@@ -266,4 +266,14 @@ hook_post_source='''
     au BufNewFile,BufRead *.sv setfiletype verilog_systemverilog.systemverilog
 '''
 
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
 
+[[plugins]]
+repo = 'vimwiki/vimwiki'
+hook_post_source='''
+nmap <Leader>wk <Plug>vimwikiindex
+let g:vimwiki_ext2syntax = {'.mkd':'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax':'markdown', 'ext':'.mkd'}]
+'''
+#on_ft=['markdown']
