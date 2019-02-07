@@ -1,8 +1,9 @@
 # .bashrc
 
 if [[ ! -n $TMUX ]]; then
-    # get the IDs
+    echo get the IDs
     ID="`tmux list-sessions`"
+    echo "$ID"
     if [[ -z "$ID" ]]; then
         tmux new-session
     fi
@@ -16,6 +17,8 @@ if [[ ! -n $TMUX ]]; then
     else
         :  # Start terminal normally
     fi
+else
+    stty erase 
 fi
 # ZSH is undefined
 if [ -z "$ZSH" ] && [ "${ZSH:-A}" = "${ZSH-A}" ]; then 
@@ -92,3 +95,7 @@ fi
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export ALTERAOCLSDKROOT="/usr/local/share/altera/17.1s/hld"
+
+export QSYS_ROOTDIR="/usr/local/share/altera/17.1s/quartus/sopc_builder/bin"

@@ -1,10 +1,10 @@
 set -g @tpm_plugins '              \
   tmux-plugins/tpm                 \
-  christoomey/vim-tmux-navigator   \
   tmux-plugins/tmux-resurrect      \
   tmux-plugins/tmux-continuum      \
   nhdaly/tmux-better-mouse-mode    \
 '
+#  christoomey/vim-tmux-navigator   \
 
 set-window-option -g mode-keys vi
 
@@ -16,12 +16,24 @@ set -g prefix C-Space
 bind Space send-prefix
 
 ## Smart pane switching with awareness of vim splits
-#bind -n C-h run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)g?(view|n?vim?)(diff)?$' && tmux send-keys C-h) || tmux select-pane -L"
-#bind -n BSpace run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)g?(view|n?vim?)(diff)?$' && tmux send-k eys C-h) || tmux select-pane -L"
-bind -n C-j run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)g?(view|n?vim?)(diff)?$' && tmux send-keys  C-j  ) || (tmux select-pane -P 'bg=default' && tmux select-pane -D && tmux select-pane -P 'bg=colour233')"
-bind -n C-k run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)g?(view|n?vim?)(diff)?$' && tmux send-keys  C-k  ) || (tmux select-pane -P 'bg=default' && tmux select-pane -U && tmux select-pane -P 'bg=colour233')"
-bind -n C-l run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)g?(view|n?vim?)(diff)?$' && tmux send-keys  C-l  ) || (tmux select-pane -P 'bg=default' && tmux select-pane -R && tmux select-pane -P 'bg=colour233')"
-bind -n C-\ run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)g?(view|n?vim?)(diff)?$' && tmux send-keys 'C-\\') || (tmux select-pane -P 'bg=default' && tmux select-pane -l && tmux select-pane -P 'bg=colour233')"
+unbind -n C-h
+unbind -n C-k
+unbind -n C-l
+unbind -n C-j
+
+# `C-s` で NAVIGATOR table に切り替え
+bind -n C-w switch-client -T NAVIGATOR
+
+# `C-w` が Tmux に喰われてしまうので，2回打つことで Vim に `C-w` を送れるようにして救う
+# 使用頻度の高い Window command がある場合は，明示的に `bind -T NAVIGATOR <key> send-keys C-w <key>` すればいい
+bind -T NAVIGATOR C-w send-keys C-w
+
+# `bind-key -n` のかわりに `bind -T NAVIGATOR` にする
+bind -T NAVIGATOR C-h run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)g?(view|n?vim?)(diff)?$' && tmux send-keys C-h) || tmux select-pane -L"
+bind -T NAVIGATOR C-j run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)g?(view|n?vim?)(diff)?$' && tmux send-keys  C-j  ) || (tmux select-pane -P 'bg=default' && tmux select-pane -D && tmux select-pane -P 'bg=colour233')"
+bind -T NAVIGATOR C-k run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)g?(view|n?vim?)(diff)?$' && tmux send-keys  C-k  ) || (tmux select-pane -P 'bg=default' && tmux select-pane -U && tmux select-pane -P 'bg=colour233')"
+bind -T NAVIGATOR C-l run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)g?(view|n?vim?)(diff)?$' && tmux send-keys  C-l  ) || (tmux select-pane -P 'bg=default' && tmux select-pane -R && tmux select-pane -P 'bg=colour233')"
+bind -T NAVIGATOR C-\ run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)g?(view|n?vim?)(diff)?$' && tmux send-keys 'C-\\') || (tmux select-pane -P 'bg=default' && tmux select-pane -l && tmux select-pane -P 'bg=colour233')"
 
 bind c new-window      -c "#{pane_current_path}" \; pipe-pane -o '/bin/sh -c "while read -r LINE; do echo \"[\$(date +\"%%Y_%%m%%d_%%H%%M%%S_%%N\")] \${LINE}\" >> \${HOME}/.tmux/log/\$(date +%Y%m%d-%H%M%S)-#S-#I.#P.log; done "' \;
 bind j split-window -v -c "#{pane_current_path}" \; pipe-pane -o '/bin/sh -c "while read -r LINE; do echo \"[\$(date +\"%%Y_%%m%%d_%%H%%M%%S_%%N\")] \${LINE}\" >> \${HOME}/.tmux/log/\$(date +%Y%m%d-%H%M%S)-#S-#I.#P.log; done "' \;

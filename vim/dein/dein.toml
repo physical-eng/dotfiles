@@ -266,6 +266,16 @@ hook_post_source='''
     au BufNewFile,BufRead *.sv setfiletype verilog_systemverilog.systemverilog
 '''
 
+## StatusLine
+[[plugins]]
+repo='itchyny/lightline.vim'
+
+[[plugins]]
+repo='majutsushi/tagbar'
+
+[[plugins]]
+repo='osyo-manga/vim-anzu'
+
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
