@@ -79,10 +79,10 @@ nnoremap <expr> c* ':%s/\(\<' . expand('<cword>') . '\>\)/'
 
 "QuickFix {{{1
 autocmd QuickFixCmdPost *grep* :botright cwindow
-nnoremap <Leader>p :cprevious<CR>
-nnoremap <Leader>n :cnext<CR>
-nnoremap <Leader>gg :<C-u>cfirst<CR>
-nnoremap <Leader>GG :<C-u>clast<CR>
+"nnoremap <Leader>p :cprevious<CR>
+"nnoremap <Leader>n :cnext<CR>
+"nnoremap <Leader>gg :<C-u>cfirst<CR>
+"nnoremap <Leader>GG :<C-u>clast<CR>
 
 
 "Folding {{{1

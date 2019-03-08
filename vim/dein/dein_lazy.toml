@@ -16,6 +16,80 @@ let g:syntastic_verilog_systemverilog_checkers=['verilator']
 repo =  'dhruvasagar/vim-table-mode'
 on_ft=['markdown']
 
+[[plugins]]
+repo = 't9md/vim-quickhl'
+hook_add='''
+    nmap <Space>h <Plug>(quickhl-manual-this)
+    xmap <Space>h <Plug>(quickhl-manual-this)
+    nmap <Space>H <Plug>(quickhl-manual-reset)
+    xmap <Space>H <Plug>(quickhl-manual-reset)
+    let g:quickhl_manual_colors = [
+      \ "gui=bold ctermfg=16   ctermbg=1   guifg=#ffffff guibg=#0a7383",
+      \ "gui=bold ctermfg=000   ctermbg=3   guibg=#a07040 guifg=#ffffff",
+      \ "gui=bold ctermfg=16   ctermbg=5   guibg=#4070a0 guifg=#ffffff",
+      \ "gui=bold ctermfg=000   ctermbg=6   guibg=#40a070 guifg=#ffffff",
+      \ "gui=bold ctermfg=16   ctermbg=4   guibg=#40a070 guifg=#ffffff",
+      \ ]
+'''
+
+#######################################################
+#Unite
+#######################################################
+
+#Neomru
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+hook_post_source='''
+let g:neomru#file_mru_ignore_pattern = substitute(g:neomru#directory_mru_ignore_pattern,"/mnt/\\\\|","","g")
+'''
+
+[[plugins]]
+repo='Shougo/unite.vim'
+depends='neomru.vim'
+hook_add='''
+    nnoremap <silent> <Leader>ab :UniteBookmarkAdd<CR>
+    nnoremap <silent> <Leader>b :Unite bookmark<CR>
+    nnoremap <silent> <Leader>bb :Unite bookmark<CR>
+'''
+
+#"VimFiler
+[[plugins]]
+repo = 'Shougo/vimfiler'
+depends='unite.vim'
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+
+#############
+# Denite
+############
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+depends = 'neomru.vim'
+# Key Bind Setting 
+hook_add='''
+nnoremap <Leader>u :Denite file_mru<CR>
+nnoremap <Leader>uf :Denite file<CR>
+'''
+
+hook_post_source='''
+call denite#custom#option('default','direction','top')
+call denite#custom#option('default','mode','normal')
+
+"denite/insert モードのときは，C- で移動できるようにする
+call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
+call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
+
+"tabopen や vsplit のキーバインドを割り当て
+call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
+call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
+call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
+
+"jj -> denite/insert を抜けるようにする
+call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
+
+'''
+
 #call unite#custom_default_action('source/bookmark/directory' , 'cd')
 
 #[[plugins]]
@@ -37,25 +111,8 @@ let g:neosnippet#snippets_directory='~/.dotfiles/vim/snippets/'
 ####################
 [[plugins]]
 repo =  'vim-scripts/taglist.vim'
-on_ft = ['c','verilog','systemverilog','verilog_systemverilog']
-
-###############
-# Git
-###############
-[[plugins]]
-repo =  'rhysd/committia.vim'
-
-[[plugins]]
-repo ='tpope/vim-fugitive'
-depends='committia.vim'
-hook_post_source='''
-    set statusline=%F%m%r%h%w\ %=%{fugitive#statusline()}\ \ [%Y,%{&ff}]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-'''
-
-[[plugins]]
-repo =  'gregsexton/gitv'
-depends='vim-fugitive'
+on_ft = ['c','verilog','systemverilog','verilog_systemverilog','vb']
 
 #[[plugins]]
-#repo =  'cohama/agit.vim'
+#repo='inkarkat/vim-SyntaxRange'
 

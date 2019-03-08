@@ -5,87 +5,90 @@ repo = 'Shougo/dein.vim'
 # git clone 後、実行すべきコマンドがある場合はこんな感じ
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
-hook_post_update = '''
-  if dein#util#_is_windows()
-    let cmd = 'tools\\update-dll-mingw'
-  elseif dein#util#_is_cygwin()
-    let cmd = 'make -f make_cygwin.mak'
-  elseif executable('gmake')
-    let cmd = 'gmake'
-  else
-    let cmd = 'make -f make_unix.mak'
-  endif
-    let g:dein#plugin.build = cmd
-'''
-#elseif dein#util#_is_cygwin()
-#    let cmd = 'make -f make_cygwin.mak'
-#elseif executable('gmake')
-#    let cmd = 'gmake'
-#else
-#    let cmd = 'make'
-#endif
-#    echo "vimproc: cygwin"
-#    echo "vimproc: windows"
-#    echo "vimproc: gmake"
-
-#Neomru
-[[plugins]]
-repo =  'Shougo/neomru.vim'
-
-#Unite
-[[plugins]]
-repo =  'Shougo/unite.vim'
-depends = 'neomru.vim'
 hook_add='''
-let g:neomru#file_mru_ignore_pattern = substitute(g:neomru#directory_mru_ignore_pattern,"/mnt/\\\\|","","g")
+if has('win64')
+let g:vimproc#dll_path = expand('~/Documents/AVCT/Tools/Vim/plugins/vimproc/lib/vimproc_win64.dll')
+endif
 '''
 
-#############
-# Denite
-############
+hook_post_update= '''
+if dein#util#_is_windows()
+let cmd = 'tools\\update-dll-mingw'
+elseif dein#util#_is_cygwin()
+let cmd = 'make -f make_cygwin.mak'
+elseif executable('gmake')
+let cmd = 'gmake'
+else
+let cmd = 'make -f make_unix.mak'
+endif
+let g:dein#plugin.build = cmd
+'''
+
+
+########################################
+## StatusLine {{{1
+
 [[plugins]]
-repo =  'Shougo/denite.nvim'
-depends = 'neomru.vim'
-# Key Bind Setting 
+repo='majutsushi/tagbar'
+
+[[plugins]]
+repo='itchyny/lightline.vim'
+depends=['vim-fugitive','gitgutter']
 hook_add='''
-call denite#custom#option('default','direction','top')
-call denite#custom#option('default','mode','normal')
+'''
+# }}}
 
-"denite/insert モードのときは，C- で移動できるようにする
-call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
-call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
 
-"tabopen や vsplit のキーバインドを割り当て
-call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
-call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
-call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
-
-"jj -> denite/insert を抜けるようにする
-call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
-
-nnoremap <Leader>u :Denite file_mru<CR>
-nnoremap <Leader>uf :Denite file<CR>
+[[plugins]]
+repo='terryma/vim-expand-region'
+hook_add='''
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 '''
 
-#
-#"VimFiler
 [[plugins]]
-repo =  'Shougo/vimfiler'
+repo= 'troydm/zoomwintab.vim'
+
+
+[[plugins]]
+repo= 'mattesgroeger/vim-bookmarks'
+
+
+[[plugins]]
+repo= 'leafcage/yankround.vim'
+hook_add='''
+   nnoremap <Leader>p :<C-u>Unite yankround<CR>
+   nnoremap <Leader><C-p> :<C-u>Unite yankround<CR>
+'''
+##yankroundは "set clipbord="を前提としているため、
+##unnamedレジスタを使う場合には下記設定は意図しない動作になる
+#nmap <Leader>p (yankround-p)
+#xmap <leader>p (yankround-p)
+#nmap <leader>P (yankround-P)
+#nmap <leader>gp (yankround-gp)
+#xmap <leader>gp (yankround-gp)
+#nmap <leader>gP (yankround-gP)
+
+
+[[plugins]]
+repo='jlanzarotta/bufexplorer'
+
+############################################
 #Color Scheme
 [[plugins]]
-repo =  'sjl/badwolf'
+repo = 'sjl/badwolf'
 [[plugins]]
-repo =  'vim-scripts/twilight'
+repo = 'vim-scripts/twilight'
 [[plugins]]
-repo =  'vim-scripts/simplewhite.vim'
+repo = 'vim-scripts/simplewhite.vim'
 [[plugins]]
-repo =  'vim-scripts/industry.vim'
+repo = 'vim-scripts/industry.vim'
 [[plugins]]
-repo =  'vim-scripts/baycomb'
+repo = 'vim-scripts/baycomb'
 [[plugins]]
-repo =  "w0ng/vim-hybrid"
+repo = "w0ng/vim-hybrid"
 [[plugins]]
-repo =  'altercation/vim-colors-solarized'
+repo = 'altercation/vim-colors-solarized'
 [[plugins]]
 repo = 'tomasr/molokai'
 [[plugins]]
@@ -93,62 +96,62 @@ repo = 'jpo/vim-railscasts-theme'
 
 #NeoComplete
 [[plugins]]
-repo =  'Shougo/neocomplete'
+repo = 'Shougo/neocomplete'
 [[plugins]]
-repo =  'Shougo/neocomplcache'
+repo = 'Shougo/neocomplcache'
 
 #Git
 [[plugins]]
 repo='hotwatermorning/auto-git-diff'
 hook_add='''
-    let g:auto_git_diff_show_window_at_right=1
+let g:auto_git_diff_show_window_at_right=1
 '''
 [[plugins]]
-repo =  'idanarye/vim-merginal'
+repo = 'idanarye/vim-merginal'
 
 [[plugins]]
-repo =  'cohama/agit.vim'
+repo = 'cohama/agit.vim'
 hook_add='''
 let g:agit_max_log_lines=3000
 '''
 
 #Align
 [[plugins]]
-repo =  'vim-scripts/Align'
+repo = 'vim-scripts/Align'
 hook_add='''
 vnoremap <S-l> :AlignCtrl Cllllrlp01110P0101<CR>:'<,'>Align \. ( ) // \.<CR>:AlignCtrl =lp1P1 <CR>
 '''
 
 #[[plugins]]
-#repo =  'changed'
+#repo = 'changed'
 #[[plugins]]
-#repo =  'vim-scripts/BlockDiff'
+#repo = 'vim-scripts/BlockDiff'
 #[[plugins]]
-#repo =  'vim-scripts/ifdef.vim'
+#repo = 'vim-scripts/ifdef.vim'
 #
 #"VimTex
 #[[plugins]]
-#repo =  'lervag/vimtex'
+#repo = 'lervag/vimtex'
 #
 [[plugins]]
-repo =  'LeafCage/foldCC.vim'
+repo = 'LeafCage/foldCC.vim'
 
 [[plugins]]
-repo =  'kshenoy/vim-signature'
+repo = 'kshenoy/vim-signature'
 
 #
 [[plugins]]
-repo =  'tpope/vim-surround'
+repo = 'tpope/vim-surround'
 #
 [[plugins]]
-repo =  'thinca/vim-quickrun'
-hook_post_source='''
+repo = 'thinca/vim-quickrun'
+hook_add='''
 let g:quickrun_config={'_': {'split': 'vertical'}}
 
 let g:quickrun_no_default_key_mappings = 1
 
-nnoremap <Leader>r :write<CR>:QuickRun -mode n<CR>        
-xnoremap <Leader>r :<C-U>write<CR>gv:QuickRun -mode v<CR> 
+nnoremap <Leader>r :write<CR>:QuickRun -mode n<CR>
+xnoremap <Leader>r :<C-U>write<CR>gv:QuickRun -mode v<CR>
 
 let g:quickrun_no_default_key_mappings = 1
 nnoremap <Leader>r :cclose<CR>:write<CR>:QuickRun -mode n<CR>
@@ -159,33 +162,33 @@ au QuickfixCmdPost make,grep,grepadd,vimgrep copen
 '''
 
 [[plugins]]
-repo =  'vim-scripts/errormarker.vim'
+repo = 'vim-scripts/errormarker.vim'
 
 #
 #[[plugins]]
-#repo =  'wannesm/wmgraphviz.vim'
+#repo = 'wannesm/wmgraphviz.vim'
 #
 #"Markdown
 #[[plugins]]
-#repo =  'plasticboy/vim-markdown'
+#repo = 'plasticboy/vim-markdown'
 #[[plugins]]
-#repo =  'kannokanno/previm'
+#repo = 'kannokanno/previm'
 #[[plugins]]
-#repo =  'tyru/open-browser.vim'
+#repo = 'tyru/open-browser.vim'
 #
 #"GDB
 #"[[plugins]]
-#"repo =  'vim-scripts/Conque-GDB'
+#"repo = 'vim-scripts/Conque-GDB'
 #
 [[plugins]]
-repo =  't9md/vim-choosewin'
+repo = 't9md/vim-choosewin'
 hook_post_source='''
 nnoremap - :ChooseWin<CR>
 '''
 
 #"TMUX
 [[plugins]]
-repo =  'christoomey/vim-tmux-navigator'
+repo = 'christoomey/vim-tmux-navigator'
 
 #"VimDiff by histogram
 #[[plugins]]
@@ -196,8 +199,8 @@ repo = 'Shougo/deoplete.nvim'
 hook_post_source='''
 let g:deoplete#enable_at_startup = 1
 inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-        \ neosnippet#expandable_or_jumpable() ?
-        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+\ neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 '''
 
 [[plugins]]
@@ -206,72 +209,64 @@ repo = 'roxma/nvim-yarp'
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
 
+
+
+#repo = 'lambdalisue/vim-unified-diff'
+[[plugins]]
+repo = 'chrisbra/vim-diff-enhanced'
+#
+#"Calendar
+#[[plugins]]
+#repo = 'itchyny/calendar.vim'
+#
+##DiffChar
+#[[plugins]]
+#repo = 'vim-scripts/diffchar.vim'
+#hook_post_source='''
+#if &diff
+# augroup enable_diffchar
+# autocmd!
+# autocmd VimEnter * execute "%SDChar"
+# augroup END
+#endif
+#'''
+#NeoSnippet
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'honza/vim-snippets'
+
 [[plugins]]
 repo = 'Shougo/neosnippet'
 depends = ['neosnippet-snippets']
-#on_i = 1
 hook_post_source='''
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+imap <C-k> <Plug>(neosnippet_expand_target)
 
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><TAB>
+ \ pumvisible() ? "\<C-n>" :
+ \ neosnippet#expandable_or_jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" For conceal markers.
+# For conceal markers.
 if has('conceal')
-  set conceallevel=2 concealcursor=niv
+set conceallevel=2 concealcursor=niv
 endif
 let g:neosnippet#snippets_directory='~/.vim/dein/.cache/.vimrc/.dein/neosnippets/,~/.dotfiles/vim/snippets'
 '''
 
-
-#repo =  'lambdalisue/vim-unified-diff'
-[[plugins]]
-repo =  'chrisbra/vim-diff-enhanced'
-#
-#"Calendar
-#[[plugins]]
-#repo =  'itchyny/calendar.vim'
-#
-##DiffChar
-#[[plugins]]
-#repo =  'vim-scripts/diffchar.vim'
-#hook_post_source='''
-#if &diff
-#  augroup enable_diffchar
-#    autocmd!
-#    autocmd VimEnter * execute "%SDChar"
-#  augroup END
-#endif
-#'''
-#"NeoSnippet
-[[plugins]]
-repo =  'Shougo/neosnippet-snippets'
-
-[[plugins]]
-repo =  'honza/vim-snippets'
-
-
 #
 ##Verilog
 [[plugins]]
-repo =  "vhda/verilog_systemverilog.vim"
+repo = "vhda/verilog_systemverilog.vim"
 hook_post_source='''
-    au BufNewFile,BufRead *.v setfiletype verilog_systemverilog.verilog
-    au BufNewFile,BufRead *.sv setfiletype verilog_systemverilog.systemverilog
+au BufNewFile,BufRead *.v setfiletype verilog_systemverilog.verilog
+au BufNewFile,BufRead *.sv setfiletype verilog_systemverilog.systemverilog
 '''
-
-## StatusLine
-[[plugins]]
-repo='itchyny/lightline.vim'
-
-[[plugins]]
-repo='majutsushi/tagbar'
 
 [[plugins]]
 repo='osyo-manga/vim-anzu'
@@ -287,3 +282,40 @@ let g:vimwiki_ext2syntax = {'.mkd':'markdown','.md': 'markdown', '.markdown': 'm
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax':'markdown', 'ext':'.mkd'}]
 '''
 #on_ft=['markdown']
+
+#[[plugins]]
+#repo =  'cohama/agit.vim'
+
+###############
+# Git
+###############
+[[plugins]]
+repo =  'rhysd/committia.vim'
+
+[[plugins]]
+repo ='tpope/vim-fugitive'
+depends='committia.vim'
+#hook_add='''
+#    set statusline=%F%m%r%h%w\ %=%{fugitive#statusline()}\ \ [%Y,%{&ff}]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+#'''
+
+[[plugins]]
+repo =  'gregsexton/gitv'
+depends='vim-fugitive'
+
+
+###############
+# W3m
+###############
+[[plugins]]
+repo =  'yuratomo/w3m.vim'
+hook_add='''
+let g:w3m#homepage = "http://www.google.co.jp/"
+"let g:w3m#search_engine= \'https://www.google.co.jp/search?ie=utf-8&q=test'
+nnoremap <Leader>E :W3mTab
+'''
+
+[[plugins]]
+repo ='inkarkat/vim-SyntaxRange'
+
+# vim: set foldmethod=marker :

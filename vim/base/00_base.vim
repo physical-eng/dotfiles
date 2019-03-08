@@ -8,7 +8,7 @@ inoremap <C-j> <NL>
 inoremap <C-l> <Del>
 
 "通常モードで<ESC>でハイライトOFF {{{1
-nnoremap <silent> jj :noh<CR>j
+nnoremap <silent> <ESC><ESC> :noh<CR>
 
 "<Leader> {{{1
 let mapleader      = "\<Space>"
@@ -19,11 +19,11 @@ nnoremap <Leader>w <Nop>
 nnoremap <Leader>q <Nop>
 nnoremap <Leader>o <Nop>
 
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
-nnoremap <Leader>qq :qa<CR>
-nnoremap <Leader>qa :qa<CR>
-nnoremap <Leader>o :on<CR>
+nnoremap <silent><Leader>w :w<CR>
+nnoremap <silent><Leader>q :q<CR>
+nnoremap <silent><Leader>qq :qa<CR>
+nnoremap <silent><Leader>qa :qa<CR>
+nnoremap <silent><Leader>o :on<CR>
 
 "S-Tabでインデント上げ "{{{1
 nnoremap <S-Tab> <ESC><<
@@ -31,6 +31,21 @@ inoremap <S-Tab> <ESC><<i
 
 "現在居る行の折りたたみ解除
 nnoremap z<S-v> zMzv
+
+filetype off
+filetype plugin indent off
+
+"********************************
+"       文字コード関係
+"****************************"{{{
+set encoding=utf-8
+set fileencodings=utf-8,cp932,sjis,utf-16le,
+set fileformats=unix,dos,mac
+
+set ambiwidth=double
+set backspace=indent,eol,start
+
+"}}}
 
 syntax on
 set hidden
@@ -47,7 +62,7 @@ set foldcolumn=5     " 画面の左端に折りたたみ表示用の列を5列�
 set winwidth=100 "カレントウインドウの最低限の幅
 set winheight=15 "カレントウインドウの最低限の高さ
 set winminwidth=20  "カレント以外のウィンドウの最小幅
-set winminheight=10 "カレント以外のウインドウの最小高さ
+set winminheight=1 "カレント以外のウインドウの最小高さ
 set display=lastline "長い行も最後まで表示
 
 set pumheight=5 "補完メニューの高さ
@@ -95,17 +110,6 @@ endif
 
 "}}}
 "********************************
-"       文字コード関係           
-"****************************"{{{
-set encoding=utf-8
-set fileencodings=utf-8,cp932,sjis
-set fileformats=unix,dos,mac
-
-set ambiwidth=double
-set backspace=indent,eol,start
-
-"}}}
-"********************************
 "         入力関係
 "****************************"{{{
 
@@ -116,48 +120,6 @@ set wildmenu wildmode=list:longest,full
 "IMEを自動OFF "{{{1
 set iminsert=0
 set imsearch=-1
-
-"********************************
-"        色設定 
-"********************************
-"256 Color
-set t_Co=256
-
-set background=dark
-
-
-"ハイライト関係の設定 "{{{1
-augroup MyColorScheme
-    au!
-
-    "カーソルの色 {{{2
-    au ColorScheme * hi CursorColumn ctermbg=8
-    au ColorScheme * hi CursorLine   cterm=underline
-
-    "折り返しの代わりにハイライト
-    au ColorScheme * hi ColorColumn ctermbg=237
-    
-    " コメントハイライト 設定 {{{2
-    au ColorScheme * highlight Comment ctermfg=darkgreen guifg=#008800
-
-    " コメントキーワードハイライト 設定 {{{2
-    au ColorScheme * syn match   myTodo   contained   "\<\(TBD\|TODO\|FIXME\):"
-    au ColorScheme * hi def link myTodo Todo
-
-    "ビジュアルモードハイライト設定 {{{2
-    au ColorScheme * highlight Visual  cterm=NONE ctermbg=236
-
-    "アクティブなタブ/ステータスラインの設定 {{{2
-    au ColorScheme * hi TabLineSel cterm=bold ctermfg=cyan ctermbg=236  guifg=#000000 guibg=#777777
-    au ColorScheme * hi StatusLine cterm=bold ctermfg=cyan ctermbg=236  guifg=#000000 guibg=#777777
-
-    "非アクティブなタブ/ステータスラインの設定 {{{2
-    au ColorScheme * hi TabLine       cterm=NONE ctermfg=250 ctermbg=233 
-    au ColorScheme * hi StatusLineNC  cterm=NONE ctermfg=250 ctermbg=233 
-
-    "}}}2
-augroup END
-
 
 filetype plugin indent on
 "VimDiffでは空白の数の違いを無視 "{{{1
@@ -262,5 +224,11 @@ command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 
 "まさかのマウス
 set mouse=n
-set ttymouse=xterm2
+if !has('nvim')
+    set ttymouse=xterm2
+endif
 set virtualedit+=all
+
+
+
+

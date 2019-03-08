@@ -2,7 +2,7 @@ source $VIMRUNTIME/macros/matchit.vim
 
 
 "カラースキーム {{{1
-colorscheme industry
+"colorscheme industry
 "colorscheme baycomb
 "colo solarized
 
@@ -249,3 +249,9 @@ let g:calendar_first_day = 'monday'
 "DiffChar "{{{1
 let g:DiffUnit="Word1"
 
+"テンプレート {{{1
+
+augroup MyTemplate
+    au!
+    au BufNewFile *.bas 0r $HOME/.dotfiles/vim/template/vb.txt
+augroup END

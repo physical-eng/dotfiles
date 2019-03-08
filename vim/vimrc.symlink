@@ -1,12 +1,17 @@
 "set shellslash
 set runtimepath+=~/.dotfiles/vim
 set runtimepath+=~/.dotfiles/vim/after
+filetype off
+filetype plugin indent off
 
+so ~/.dotfiles/vim/after/00_color.vim
 runtime! base/*.vim
 
 if DeinIsInstalled()
     runtime! extend/*.vim
 endif
+
+so ~/.dotfiles/vim/after/00_color.vim
 
 if !filereadable (expand("~/.vimrc.local"))
     if !filereadable (expand("~/.dotfiles/vim/vimrc.local"))
@@ -17,3 +22,4 @@ if !filereadable (expand("~/.vimrc.local"))
 endif
 
 source ~/.vimrc.local
+filetype plugin indent on

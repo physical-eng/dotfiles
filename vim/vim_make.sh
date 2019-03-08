@@ -43,7 +43,7 @@ repo_url=https://github.com/rbenv/ruby-build.git
 dist_dir=$HOME/.rbenv/plugins/ruby-build
 update_repo $repo_url $dist_dir
 
-sudo $dist_dir/install.sh
+$dist_dir/install.sh
 rbenv install -l
 rbenv install ${RUBY2_VER} --skip-existing
 echo 'eval "$(rbenv init -)"' >> ~/.bash_profile.local

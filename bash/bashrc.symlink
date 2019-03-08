@@ -1,25 +1,38 @@
 # .bashrc
 
+PERCOL=fzf
+#PERCOL=:
+TERM=ansi
+export $TERM
+
 if [[ ! -n $TMUX ]]; then
-    echo get the IDs
+    # get the IDs
     ID="`tmux list-sessions`"
-    echo "$ID"
     if [[ -z "$ID" ]]; then
         tmux new-session
     fi
-    create_new_session="Create New Session"
-    ID="$ID\n${create_new_session}:"
-    ID="`echo $ID | $PERCOL | cut -d: -f1`"
-    if [[ "$ID" = "${create_new_session}" ]]; then
-        tmux new-session
-    elif [[ -n "$ID" ]]; then
-        tmux attach-session -t "$ID"
-    else
-        :  # Start terminal normally
-    fi
-else
-    stty erase 
+    
+    tmux a \; choose-tree \Zs
+
+#    create_new_session="Create New Session"
+#    ID=`echo "$ID
+#${create_new_session}:"`
+#    echo "$ID"
+#
+#    ID="`echo \"$ID\" | $PERCOL | cut -d: -f1`"
+#    if [[ "$ID" = "${create_new_session}" ]]; then
+#        tmux new-session
+#    elif [[ -n "$ID" ]]; then
+#        tmux attach-session -t "$ID"
+#    else
+#        :  # Start terminal normally
+#    fi
 fi
+
+if [[ -n $TMUX ]] ; then
+    stty erase 
+fi
+
 # ZSH is undefined
 if [ -z "$ZSH" ] && [ "${ZSH:-A}" = "${ZSH-A}" ]; then 
     ZSH=$BASH

@@ -16,6 +16,7 @@
     trc = log --oneline  --date=format:'%Y/%m/%d %H:%M:%S' --pretty=format:'%h [%cd]  <%an> %s  %d '
     re  = reflog         --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%cd %h %gd %gs'
     co  = checkout
+    ce  = commit --allow-empty
     cb  = git-new-branch
     ci  = commit
     cm  = commit --amend
