@@ -1,11 +1,11 @@
-let g:lightline = {
+﻿let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'mode_map': {'c': 'NORMAL'},
       \ 'active': {
       \   'left': [ ['mode', 'paste'], ['fugitive', 'filename', 'cakephp', 'currenttag', 'anzu'] ]
       \ },
       \ 'component': {
-      \   'lineinfo': ' %3l:%-2v',
+      \   'lineinfo': '%3l:%-2v',
       \ },
       \ 'component_function': {
       \   'modified': 'MyModified',
@@ -43,7 +43,7 @@ endfunction
 function! MyFugitive()
   try
     if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head') && strlen(fugitive#head())
-      return ' ' . fugitive#head()
+      return "\u2b60 " . fugitive#head()
     endif
   catch
   endtry
@@ -67,7 +67,7 @@ function! MyMode()
 endfunction
 
 function! MyCurrentTag()
-  return tagbar#currenttag('%s', '')
+  return (&ft=='c') ? ( tagbar#currenttag('%s', '') ) : ''
 endfunction
 
 function! MyCakephp()

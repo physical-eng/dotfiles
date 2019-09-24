@@ -1,7 +1,7 @@
-if !&compatible
-  set nocompatible
-endif
-
+"if !&compatible
+"  set nocompatible
+"endif
+"
 "let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
 let g:vimproc#download_windows_dll = 1
 let s:cache_home = expand('~/.vim')
@@ -12,7 +12,7 @@ let &runtimepath = &runtimepath . "," . s:dein_repo_dir
 " プラグインリストを収めた TOML ファイル
 " 予め TOML ファイル（後述）を用意しておく
 let g:rc_dir    = expand('~/.dotfiles/vim/dein')
-let s:toml      = g:rc_dir . '/dein.toml'
+let s:toml      = g:rc_dir . '/base.toml'
 let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
 function! DeinIsInstalled()
@@ -46,6 +46,7 @@ endfunction "}}}
 
 " 不足プラグインの自動インストール "{{{1
 function! ReloadPlugins()
+    let g:dein#install_log_filename=expand(g:rc_dir."/install.log")
     "if has('vim_starting') && dein#check_install()
     call s:ReloadTOML()
     if dein#check_install()
@@ -63,11 +64,12 @@ if !DeinIsInstalled()
     echo "dein.vim is not installed. If you want, run \":call InstallDein()\"."
     function! InstallDein() "{{{1
         echo "Installing dein..."
-        call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
+        echo 'git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir)
+        let s:clone_log=system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
+        echo  s:clone_log
     endfunction
 else
-    call s:InstallPlugins()
-"    call ReloadPlugins()
+    call ReloadPlugins()
 endif
 
 

@@ -1,0 +1,6 @@
+# Source definitions
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
+
+

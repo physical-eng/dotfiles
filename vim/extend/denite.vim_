@@ -14,5 +14,5 @@ call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
 "jj -> denite/insert を抜けるようにする
 call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
 
-nnoremap <Leader>u :Denite file_mru<CR>
+nnoremap <Leader>uu :Denite file_mru<CR>
 nnoremap <Leader>uf :Denite file<CR>

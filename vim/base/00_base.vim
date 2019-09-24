@@ -19,11 +19,18 @@ nnoremap <Leader>w <Nop>
 nnoremap <Leader>q <Nop>
 nnoremap <Leader>o <Nop>
 
-nnoremap <silent><Leader>w :w<CR>
-nnoremap <silent><Leader>q :q<CR>
+nnoremap <silent><Leader>w  :w \| :diffu<CR>
+nnoremap <silent><Leader>wq :wq<CR>
+nnoremap <silent><Leader>q  :q<CR>
 nnoremap <silent><Leader>qq :qa<CR>
 nnoremap <silent><Leader>qa :qa<CR>
-nnoremap <silent><Leader>o :on<CR>
+nnoremap <silent><Leader>o  :on<CR>
+
+augroup AUTOINFO
+    au!
+"    au BufWritePost,BufLeave,CmdlineLeave * wv
+"    au BufEnter     * rv!
+augroup END
 
 "S-Tabでインデント上げ "{{{1
 nnoremap <S-Tab> <ESC><<
@@ -221,6 +228,27 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 
 "Renameコマンドで現在編集中のファイル名を変更 "{{{1
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
+
+"" 挿入モードに入る時，前回の挿入モードにおける IME の状態を復元する．
+" 挿入モードを出る時，現在の IME の状態を保存し，IME をオフにする．
+" Vim 終了時，IME を無効にし，無効にした状態を保存する．
+if exists('$TMUX')
+    "TMUX経由で制御シーケンスを受け取るには、
+    "1シーケンス毎にエスケープが必要
+    let &t_SI .= "\ePtmux;\e\e[<0t\e\\"
+    let &t_EI .= "\ePtmux;\e\e[<s\e\\"
+    let &t_EI .= "\ePtmux;\e\e[<0t\e\\"
+    let &t_te .= "\ePtmux;\e\e[<0t\e\\"
+    let &t_te .= "\ePtmux;[<s\e\\"
+else
+    let &t_SI .= "\e[<0t"
+    let &t_EI .= "\e[<s"
+    let &t_EI .= "\e[<0t"
+    let &t_te .= "\e[<0t"
+    let &t_te .= "\e[<s"
+endif
+
+set ttimeoutlen=100
 
 "まさかのマウス
 set mouse=n

@@ -31,6 +31,7 @@
     cpn = cherry-pick --no-commit
     stu = status -uno
     modereset = "!f(){ cmd=\"git diff --numstat | awk '{if (($1 == \"0\" && $2 == \"0\") || ($1 == \"-\" && $2 == \"-\")) print $3}' | xargs git checkout HEAD\"; echo $cmd; };f"
+    bcm = !git --no-pager log -1 --pretty=format:'%s'
 
 
 [color]
@@ -40,13 +41,12 @@
     ui = true
 [core]
     excludesfile = ~/.gitignore
-    editor = vim -c \"set fenc=utf-8\" -c \"let g:committia_open_only_vim_starting=0\"
     autocrlf = input
     safecrlf = false
     quotepath = false
     filemode = true
     attributesfile = ~/.gitattributes
-    pager = lv -c
+#    pager = lv -c
 [apply]
     whitespace = nowarn
 [mergetool]
@@ -74,7 +74,8 @@
 [filter "qsys_common"]
         #smudge =  perl -0pe 's/(datum\\ssopceditor_expanded\\s*.*\\s*value\\s=)(\\s\".\")/\\1 \"0\"/gm'
         #clean  =  perl -0pe 's/(datum\\ssopceditor_expanded\\s*.*\\s*value\\s=)(\\s\".\")/\\1 \"0\"/gm'
-    clean = vi -es /dev/stdin +\":%s// /ge | :%s/\\([^>}]\\)\\n/\\1 /ge | %s/}\\n \\+}/} }/ge | %s/ \\+/ /ge | %s/^\\s\\+/ /ge | %s/^\\(.*sopceditor_expanded.*value\\) = \\\"1\\\"/\\1 = \\\"0\\\"/e\" +%p +q!
+        #clean = vi -es /dev/stdin +\":%s// /ge | :%s/\\([^>}]\\)\\n/\\1 /ge | %s/}\\n \\+}/} }/ge | %s/ \\+/ /ge | %s/^\\s\\+/ /ge | %s/^\\(.*sopceditor_expanded { value\\) = \\\"1\\\"/\\1 = \\\"0\\\"/e\" +%p +q!
+        clean = cat
 
 #[filter "source_file"]
 #        smudge = vim -es /dev/stdin +':norm Go/* Last Commit is "^[o^[$' +',$!git --no-pager log --oneline -1' +':norm Go " */^[2k3J' +:%p +:q!

@@ -25,9 +25,10 @@ au BufRead,BufNewFile *.vh set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.vt set filetype=verilog_systemverilog
 au BufRead,BufNewFile *.v  set filetype=verilog_systemverilog
 
-".vb.bas, vb.clsのファイルをVBとして認識 {{{1
+".vb.bas, vb.cls, dcmのファイルをVBとして認識 {{{1
 au BufRead,BufNewFile *.vb.bas set filetype=VB
 au BufRead,BufNewFile *.vb.cls set filetype=VB
+au BufRead,BufNewFile *.dcm set filetype=VB
 
 ".tcのファイルをTiming Chartとして認識 {{{1
 au BufRead,BufNewFile *.tc set filetype=timingchart
@@ -50,32 +51,12 @@ set tags=./tags;,tags;
 let Tlist_Show_One_File = 0 "現在編集中のソースのタグしか表示しない
 let Tlist_Show_Menu = 0
 
-"Quick Run {{{1
-"let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
-let g:quickrun_config = {}
-let g:quickrun_config.markdown = {
-      \ 'outputter' : 'null',
-      \ 'command'   : 'pandoc',
-      \ 'cmdopt'    : '--indented-code-classes=verilog,c -o',
-      \ 'args'      : '',
-      \ 'exec'      : '%c -f %s %o %s:r.html',
-      \ }
-"      \ 'exec'      : '%c -f markdown_phpextra %s --toc %o %s:r.docx',
-
-let g:quickrun_config.timingchart = {
-      \ 'outputter' : 'null',
-      \ 'command'   : 'tcbmp',
-      \ 'cmdopt'    : '',
-      \ 'args'      : '',
-      \ 'exec'      : '%c %s',
-      \ }
-
 "Syntastic {{{1
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_debug=0
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 "Folding {{{1
@@ -158,14 +139,14 @@ let g:neocomplete#force_omni_input_patterns.dot = '\%(=\|,\|\[\)\s*\w*'
 "\ 'exec'                           : ['%c -T png %s -o %s:r.png', 'start %s:r.png'],
 
 
-let g:quickrun_config['dot'] = {
-            \ 'hook/cd/directory'              : '%S:p:h',
-            \ 'command'                        : 'dot', 
-            \ 'cmdopt'                         : '',
-            \ 'exec'                           : ['%c -T png %s -o %s:r.png'],
-            \ 'outputter/quickfix/errorformat' : 'Error: %f: %m in line %l %.%#,%EError: %m,%C%m,%Z%m'
-            \}
-
+"let g:quickrun_config['dot'] = {
+"            \ 'hook/cd/directory'              : '%S:p:h',
+"            \ 'command'                        : 'dot', 
+"            \ 'cmdopt'                         : '',
+"            \ 'exec'                           : ['%c -T png %s -o %s:r.png'],
+"            \ 'outputter/quickfix/errorformat' : 'Error: %f: %m in line %l %.%#,%EError: %m,%C%m,%Z%m'
+"            \}
+"
 
 
 "Table ModeのフォーマットをMarkDown互換に {{{1
@@ -178,15 +159,15 @@ let g:previm_enable_realtime = 1
 
 
 " LaTeX Quickrun {{{1
-let g:quickrun_config['tex'] = {
-            \ 'command' : 'latexmk',
-            \ 'outputter' : 'error',
-            \ 'outputter/error/success' : 'null',
-            \ 'outputter/error/error' : 'quickfix',
-            \ 'cmdopt': '-pdfdvi',
-            \ 'exec': '%c %o %a %s',
-            \}
-
+"let g:quickrun_config['tex'] = {
+"            \ 'command' : 'latexmk',
+"            \ 'outputter' : 'error',
+"            \ 'outputter/error/success' : 'null',
+"            \ 'outputter/error/error' : 'quickfix',
+"            \ 'cmdopt': '-pdfdvi',
+"            \ 'exec': '%c %o %a %s',
+"            \}
+"
 ""Verilog Quickrun {{{1
 "let g:quickrun_config['verilog'] = {
 "            \ 'command' : 'verilator',
@@ -198,11 +179,6 @@ let g:quickrun_config['tex'] = {
 "            \}
 "
 "
-" Gitv {{{1
-nnoremap <C-G><C-l> :Gitv<CR>
-nnoremap <Leader>gv :Gitv<CR>
-nnoremap <Leader>gl :Gitv<CR>
-
 "Git flow コマンド {{{1
 command! -nargs=+ -complete=custom,GitFlowCommand Gflow :Git flow <args> 
 nnoremap <Leader>gf :Gflow 
@@ -229,6 +205,10 @@ endfun
 
 "AGit {{{1
 let g:agit_stat_width=45
+nnoremap <C-G><C-l> :Agit<CR>
+nnoremap <Leader>gv :Agit<CR>
+nnoremap <Leader>gl :Agit<CR>
+
 command! AgitReload <Plug>(agit-reload)
 
 ""アンダーバーをShiftなしで入力(バックスラッシュは右上のBSの左側で) "{{{1

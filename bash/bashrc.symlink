@@ -2,17 +2,32 @@
 
 PERCOL=fzf
 #PERCOL=:
-TERM=ansi
-export $TERM
+export TERM=xterm-256color
+
+
+[[ -f ~/.dotfiles/bash/bash-preexec.sh ]] && source ~/.dotfiles/bash/bash-preexec.sh
+
+if [ -f /proc/$PPID/cmdline ]; then
+    if [ "$(command cut -d : -f1 < "/proc/$PPID/cmdline")" = "sshd" ] && [[ $- == *i* ]]; then
+        echo
+        command df -h | command awk '/^\/dev/ {gsub(/.[890][0-9]%/, "\x1b[1;31m&\x1b[0m"); print;}'
+        echo
+        command free -m
+        export `echo $SSH_CONNECTION | awk '{printf "DISPLAY=%s:0",$1}'`
+    fi
+fi
 
 if [[ ! -n $TMUX ]]; then
+    tmux set -ag update-environment " DISPLAY"
+    tmux show-environment
+
     # get the IDs
     ID="`tmux list-sessions`"
     if [[ -z "$ID" ]]; then
         tmux new-session
     fi
-    
-    tmux a \; choose-tree \Zs
+
+    tmux a \; choose-tree -Zs
 
 #    create_new_session="Create New Session"
 #    ID=`echo "$ID
@@ -31,6 +46,12 @@ fi
 
 if [[ -n $TMUX ]] ; then
     stty erase 
+    if [ -f ~/.dotfiles/bash/bash-preexec.sh ]; then
+        preexec() 
+        {
+            export `tmux show-env | grep DISPLAY`
+        }
+    fi
 fi
 
 # ZSH is undefined
@@ -112,3 +133,4 @@ fi
 export ALTERAOCLSDKROOT="/usr/local/share/altera/17.1s/hld"
 
 export QSYS_ROOTDIR="/usr/local/share/altera/17.1s/quartus/sopc_builder/bin"
+

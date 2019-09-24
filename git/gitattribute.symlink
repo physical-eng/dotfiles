@@ -1,3 +1,4 @@
+*.bas encoding=cp932
 *.hex binary
 *.xls binary
 *.xlsx binary

@@ -1,3 +1,4 @@
+# vim: set foldmethod=marker :
 # 基本は github.com のレポジトリーを指定するだけ
 [[plugins]]
 repo = 'Shougo/dein.vim'
@@ -7,34 +8,59 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/vimproc.vim'
 hook_add='''
 if has('win64')
-let g:vimproc#dll_path = expand('~/Documents/AVCT/Tools/Vim/plugins/vimproc/lib/vimproc_win64.dll')
+let g:vimproc#dll_path = expand($VIM.'/plugins/vimproc/lib/vimproc_win64.dll')
 endif
 '''
 
 hook_post_update= '''
-if dein#util#_is_windows()
-let cmd = 'tools\\update-dll-mingw'
-elseif dein#util#_is_cygwin()
-let cmd = 'make -f make_cygwin.mak'
-elseif executable('gmake')
-let cmd = 'gmake'
-else
-let cmd = 'make -f make_unix.mak'
-endif
-let g:dein#plugin.build = cmd
+let g:dein#plugin.build = "make"
 '''
 
+#############
+# Denite
+############
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
 
 ########################################
 ## StatusLine {{{1
+
+#[[plugins]]
+#repo='vim-airline/vim-airline'
 
 [[plugins]]
 repo='majutsushi/tagbar'
 
 [[plugins]]
 repo='itchyny/lightline.vim'
-depends=['vim-fugitive','gitgutter']
-hook_add='''
+depends=['vim-fugitive','vim-gitgutter']
+hook_source='''
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ 'mode_map': {'c': 'NORMAL'},
+      \ 'active': {
+      \   'left': [ ['mode', 'paste'], ['','fugitive', 'filename', 'currenttag', 'anzu'] ]
+      \ },
+      \ 'component': {
+      \   'lineinfo': ' %3l:%-2v',
+      \ },
+      \ 'component_function': {
+      \   'modified': 'MyModified',
+      \   'readonly': 'MyReadonly',
+      \   'fugitive': 'MyFugitive',
+      \   'filename': 'MyFilename',
+      \   'fileformat': 'MyFileformat',
+      \   'filetype': 'MyFiletype',
+      \   'fileencoding': 'MyFileencoding',
+      \   'mode': 'MyMode',
+      \   'anzu': 'anzu#search_status',
+      \   'currenttag': 'MyCurrentTag',
+      \ }
+      \ }
+
 '''
 # }}}
 
@@ -146,19 +172,7 @@ repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 hook_add='''
-let g:quickrun_config={'_': {'split': 'vertical'}}
-
-let g:quickrun_no_default_key_mappings = 1
-
-nnoremap <Leader>r :write<CR>:QuickRun -mode n<CR>
-xnoremap <Leader>r :<C-U>write<CR>gv:QuickRun -mode v<CR>
-
-let g:quickrun_no_default_key_mappings = 1
-nnoremap <Leader>r :cclose<CR>:write<CR>:QuickRun -mode n<CR>
-xnoremap <Leader>r :<C-U>cclose<CR>:write<CR>gv:QuickRun -mode v<CR>
-
-nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
-au QuickfixCmdPost make,grep,grepadd,vimgrep copen
+source ~/.dotfiles/vim/dein/scripts/quickrun.vim
 '''
 
 [[plugins]]
@@ -190,6 +204,9 @@ nnoremap - :ChooseWin<CR>
 [[plugins]]
 repo = 'christoomey/vim-tmux-navigator'
 
+#[[plugins]]
+#repo = 'roxma/vim-tmux-clipboard'
+
 #"VimDiff by histogram
 #[[plugins]]
 
@@ -203,12 +220,6 @@ inoremap <expr><tab> pumvisible() ? "\<C-n>" :
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 '''
 
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-
 
 
 #repo = 'lambdalisue/vim-unified-diff'
@@ -219,8 +230,9 @@ repo = 'chrisbra/vim-diff-enhanced'
 #[[plugins]]
 #repo = 'itchyny/calendar.vim'
 #
-##DiffChar
+#DiffChar
 #[[plugins]]
+#repo = 'rickhowe/diffchar.vim'
 #repo = 'vim-scripts/diffchar.vim'
 #hook_post_source='''
 #if &diff
@@ -299,21 +311,10 @@ depends='committia.vim'
 #    set statusline=%F%m%r%h%w\ %=%{fugitive#statusline()}\ \ [%Y,%{&ff}]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 #'''
 
-[[plugins]]
-repo =  'gregsexton/gitv'
-depends='vim-fugitive'
+#[[plugins]]
+#repo =  'gregsexton/gitv'
+#depends='vim-fugitive'
 
-
-###############
-# W3m
-###############
-[[plugins]]
-repo =  'yuratomo/w3m.vim'
-hook_add='''
-let g:w3m#homepage = "http://www.google.co.jp/"
-"let g:w3m#search_engine= \'https://www.google.co.jp/search?ie=utf-8&q=test'
-nnoremap <Leader>E :W3mTab
-'''
 
 [[plugins]]
 repo ='inkarkat/vim-SyntaxRange'

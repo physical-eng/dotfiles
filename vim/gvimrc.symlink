@@ -1,4 +1,15 @@
 source $VIMRUNTIME/delmenu.vim
 set langmenu=ja_jp.utf-8
+set guifont=Power_Cord_1M:h10:cANSI:qDRAFT
 source $VIMRUNTIME/menu.vim
-colorscheme industry
+colo slate
+
+if !filereadable (expand("~/.gvimrc.local"))
+    if !filereadable (expand("~/.dotfiles/vim/gvimrc.local"))
+        call system("touch ~/.gvimrc.local")
+    else
+        call system("cp ~/.dotfiles/vim/gvimrc.local ~/.gvimrc.local")
+    endif
+endif
+
+source ~/.gvimrc.local

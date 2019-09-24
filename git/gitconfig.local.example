@@ -1,0 +1,21 @@
+# vim : set ft=gitconfig :
+[user]
+        name = Nobuo Ito
+        email = ito.nobuo@kk.jp.panasonic.com
+[credential]
+        helper = manager
+[http]
+        proxy = http://proxy.avc.co.jp:8080
+
+[https]
+        proxy = http://proxy.avc.co.jp:8080
+
+[diff]
+    tool     = git-diff-wrapper
+
+[diftool "git-diff-wrapper"]
+    path="~/.dotfile/git/git-diff-wrapper"
+    cmd="~/.dotfile/git/git-diff-wrapper"
+
+[core]
+    editor = gvim -c \"set fenc=utf-8\" -c \"let g:committia_open_only_vim_starting=0\"

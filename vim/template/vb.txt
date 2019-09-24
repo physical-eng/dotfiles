@@ -1,0 +1,6 @@
+Attribute VB_Name = "Main"
+Option Explicit
+
+
+
+' vim: set ft=VB fenc=cp932 ff=dos :

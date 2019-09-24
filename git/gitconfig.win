@@ -1,0 +1,3 @@
+[core]
+    editor = gvim -c \"set fenc=utf-8\" -c \"let g:committia_open_only_vim_starting=0\"
+

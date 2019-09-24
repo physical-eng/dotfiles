@@ -1,0 +1,12 @@
+###############
+# W3m
+###############
+[[plugins]]
+repo =  'yuratomo/w3m.vim'
+hook_add='''
+let g:w3m#homepage = "http://www.google.co.jp/"
+"let g:w3m#search_engine= \'https://www.google.co.jp/search?ie=utf-8&q=test'
+nnoremap <Leader>E :W3mTab
+'''
+
+

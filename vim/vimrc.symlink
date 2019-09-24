@@ -1,10 +1,13 @@
-"set shellslash
+let $VIM=substitute($VIM,"\\","/","g")
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set shellslash
 set runtimepath+=~/.dotfiles/vim
 set runtimepath+=~/.dotfiles/vim/after
 filetype off
 filetype plugin indent off
 
-so ~/.dotfiles/vim/after/00_color.vim
 runtime! base/*.vim
 
 if DeinIsInstalled()

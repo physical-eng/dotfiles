@@ -2,7 +2,7 @@
 nnoremap <Leader>wm :w<CR>:make<CR>
 
 "Git ショートカット {{{1
-nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gs :10Gstatus<CR>
 nnoremap <Leader>gd :Gvdiff<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>ga :Gwrite<CR>
@@ -95,9 +95,9 @@ nnoremap <silent> TT :TableModeToggle<CR>
 nnoremap <silent> <F8> :Scratch<CR>
 
 " Gitv {{{1
-nnoremap <C-G><C-l> :Gitv<CR>
-nnoremap <Leader>gv :Gitv<CR>
-nnoremap <Leader>gl :Gitv<CR>
+nnoremap <C-G><C-l> :Agit<CR>
+nnoremap <Leader>gv :Agit<CR>
+nnoremap <Leader>gl :Agit<CR>
 
 " Git Merginal
 nnoremap <Leader>gm :Merginal<CR>
@@ -149,10 +149,16 @@ command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 "inoremap \ _
 "inoremap _ \
 
-"C-nで次の差分へ "{{{1
-nnoremap <C-n> ]c
-nnoremap <C-p> [c
+""C-nで次の差分へ "{{{1
+"nnoremap <C-n> ]c
+"nnoremap <C-p> [c
 
 "3-way Diff "{{{1
 nnoremap dr :diffg //2<CR>
 nnoremap dl :diffg //3<CR>
+
+if(has('terminal'))
+    set termwinkey=<C-e>
+    tnoremap <Esc> <C-\><C-n>
+    tnoremap jj <C-\><C-n>
+endif
