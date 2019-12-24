@@ -1,3 +1,5 @@
+let g:vimproc#download_windows_dll = 1
+
 if has('win32')
     let s:basedir=expand("$TEMP/vim")
 
@@ -6,6 +8,11 @@ if has('win32')
     endif
 
     let &directory=s:basedir
+endif
+
+let s:basedir=expand("~/.vim")
+if !isdirectory(s:basedir)
+    call mkdir(s:basedir)
 endif
 
 if has('persistent_undo')

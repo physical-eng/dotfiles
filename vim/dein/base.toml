@@ -13,7 +13,16 @@ endif
 '''
 
 hook_post_update= '''
-let g:dein#plugin.build = "make"
+if dein#util#_is_windows()
+let cmd = 'tools\\update-dll-mingw'
+elseif dein#util#_is_cygwin()
+let cmd = 'make -f make_cygwin.mak'
+elseif executable('gmake')
+let cmd = 'gmake'
+else
+let cmd = 'make -f make_unix.mak'
+endif
+let g:dein#plugin.build = cmd
 '''
 
 #############
@@ -24,6 +33,61 @@ repo = 'roxma/nvim-yarp'
 
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+depends = 'neomru.vim'
+# Key Bind Setting 
+hook_add='''
+nnoremap <Leader>uu :Denite file_mru<CR>
+nnoremap <Leader>uf :Denite file<CR>
+'''
+
+hook_post_source='''
+call denite#custom#option('default','direction','top')
+call denite#custom#option('default','mode','normal')
+
+"denite/insert モードのときは，C- で移動できるようにする
+call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
+call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
+
+"tabopen や vsplit のキーバインドを割り当て
+call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
+call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
+call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
+
+"jj -> denite/insert を抜けるようにする
+call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
+'''
+
+#call unite#custom_default_action('source/bookmark/directory' , 'cd')
+
+#######################################################
+#Unite
+#######################################################
+
+#Neomru
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+hook_post_source='''
+let g:neomru#file_mru_ignore_pattern = substitute(g:neomru#directory_mru_ignore_pattern,"/mnt/\\\\|","","g")
+'''
+
+[[plugins]]
+repo='Shougo/unite.vim'
+depends='neomru.vim'
+hook_add='''
+"    nnoremap <silent> <Leader>u :Unite file_mru<CR>
+"    nnoremap <silent> <Leader>uf :Unite file<CR>
+    nnoremap <silent> <Leader>ab :UniteBookmarkAdd<CR>
+    nnoremap <silent> <Leader>b :Unite bookmark<CR>
+    nnoremap <silent> <Leader>bb :Unite bookmark<CR>
+'''
+
+#"VimFiler
+[[plugins]]
+repo = 'Shougo/vimfiler'
+depends='unite.vim'
 
 ########################################
 ## StatusLine {{{1
@@ -172,7 +236,19 @@ repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 hook_add='''
-source ~/.dotfiles/vim/dein/scripts/quickrun.vim
+let g:quickrun_config={'_': {'split': 'vertical'}}
+
+let g:quickrun_no_default_key_mappings = 1
+
+nnoremap <Leader>r :write<CR>:QuickRun -mode n<CR>
+xnoremap <Leader>r :<C-U>write<CR>gv:QuickRun -mode v<CR>
+
+let g:quickrun_no_default_key_mappings = 1
+nnoremap <Leader>r :cclose<CR>:write<CR>:QuickRun -mode n<CR>
+xnoremap <Leader>r :<C-U>cclose<CR>:write<CR>gv:QuickRun -mode v<CR>
+
+nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+au QuickfixCmdPost make,grep,grepadd,vimgrep copen
 '''
 
 [[plugins]]
@@ -203,9 +279,6 @@ nnoremap - :ChooseWin<CR>
 #"TMUX
 [[plugins]]
 repo = 'christoomey/vim-tmux-navigator'
-
-#[[plugins]]
-#repo = 'roxma/vim-tmux-clipboard'
 
 #"VimDiff by histogram
 #[[plugins]]

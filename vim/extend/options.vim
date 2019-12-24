@@ -56,7 +56,7 @@ let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_debug=0
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 "Folding {{{1
@@ -139,14 +139,14 @@ let g:neocomplete#force_omni_input_patterns.dot = '\%(=\|,\|\[\)\s*\w*'
 "\ 'exec'                           : ['%c -T png %s -o %s:r.png', 'start %s:r.png'],
 
 
-"let g:quickrun_config['dot'] = {
-"            \ 'hook/cd/directory'              : '%S:p:h',
-"            \ 'command'                        : 'dot', 
-"            \ 'cmdopt'                         : '',
-"            \ 'exec'                           : ['%c -T png %s -o %s:r.png'],
-"            \ 'outputter/quickfix/errorformat' : 'Error: %f: %m in line %l %.%#,%EError: %m,%C%m,%Z%m'
-"            \}
-"
+let g:quickrun_config['dot'] = {
+            \ 'hook/cd/directory'              : '%S:p:h',
+            \ 'command'                        : 'dot', 
+            \ 'cmdopt'                         : '',
+            \ 'exec'                           : ['%c -T png %s -o %s:r.png'],
+            \ 'outputter/quickfix/errorformat' : 'Error: %f: %m in line %l %.%#,%EError: %m,%C%m,%Z%m'
+            \}
+
 
 
 "Table ModeのフォーマットをMarkDown互換に {{{1
@@ -159,15 +159,15 @@ let g:previm_enable_realtime = 1
 
 
 " LaTeX Quickrun {{{1
-"let g:quickrun_config['tex'] = {
-"            \ 'command' : 'latexmk',
-"            \ 'outputter' : 'error',
-"            \ 'outputter/error/success' : 'null',
-"            \ 'outputter/error/error' : 'quickfix',
-"            \ 'cmdopt': '-pdfdvi',
-"            \ 'exec': '%c %o %a %s',
-"            \}
-"
+let g:quickrun_config['tex'] = {
+            \ 'command' : 'latexmk',
+            \ 'outputter' : 'error',
+            \ 'outputter/error/success' : 'null',
+            \ 'outputter/error/error' : 'quickfix',
+            \ 'cmdopt': '-pdfdvi',
+            \ 'exec': '%c %o %a %s',
+            \}
+
 ""Verilog Quickrun {{{1
 "let g:quickrun_config['verilog'] = {
 "            \ 'command' : 'verilator',

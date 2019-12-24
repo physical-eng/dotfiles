@@ -1,10 +1,8 @@
 set -g @tpm_plugins '              \
   tmux-plugins/tpm                 \
-  tmux-plugins/tmux-yank           \
   tmux-plugins/tmux-resurrect      \
   tmux-plugins/tmux-continuum      \
   nhdaly/tmux-better-mouse-mode    \
-  roxma/vim-tmux-clipboard         \
 '
 #  christoomey/vim-tmux-navigator   \
 
@@ -43,21 +41,10 @@ bind l split-window -h -c "#{pane_current_path}" \; pipe-pane -o '/bin/sh -c "wh
 bind Space copy-mode
 bind C-Space copy-mode
 
-
 bind-key -T copy-mode-vi p paste-buffer
-
 
 # Setup 'v' to begin selection as in Vim
 bind-key -T copy-mode-vi v send -X begin-selection
-
-set -g focus-events on
-bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe "xsel -bi"
-bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "xsel -bi"
-bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xsel -bi"
-
-bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe "xsel -bi"
-bind-key -T copy-mode Enter send-keys -X copy-pipe-and-cancel "xsel -bi"
-bind-key -T copy-mode y send-keys -X copy-pipe-and-cancel "xsel -bi"
 
 # 設定ファイルをリロードする
 bind o source-file ~/.tmux.conf \; display "Reloaded!"
@@ -163,7 +150,7 @@ set -g message-bg colour249
 set -g message-attr bright
 
 #
-set-window-option -g  main-pane-height 50
+set-window-option -g  main-pane-height 60
 set-window-option -g  main-pane-width 220
 select-layout main-horizontal
 

@@ -1,5 +1,5 @@
 "挿入モードにおいて jjでESC {{{1
-inoremap jj <ESC>
+inoremap <silent>jj <ESC>:set iminsert=0<CR>
 
 "挿入モードにおいてCtrl+j で改行 {{{1
 inoremap <C-j> <NL>
@@ -19,18 +19,12 @@ nnoremap <Leader>w <Nop>
 nnoremap <Leader>q <Nop>
 nnoremap <Leader>o <Nop>
 
-nnoremap <silent><Leader>w  :w \| :diffu<CR>
+nnoremap <silent><Leader>w :w<CR>
 nnoremap <silent><Leader>wq :wq<CR>
-nnoremap <silent><Leader>q  :q<CR>
+nnoremap <silent><Leader>q :q<CR>
 nnoremap <silent><Leader>qq :qa<CR>
 nnoremap <silent><Leader>qa :qa<CR>
-nnoremap <silent><Leader>o  :on<CR>
-
-augroup AUTOINFO
-    au!
-"    au BufWritePost,BufLeave,CmdlineLeave * wv
-"    au BufEnter     * rv!
-augroup END
+nnoremap <silent><Leader>o :on<CR>
 
 "S-Tabでインデント上げ "{{{1
 nnoremap <S-Tab> <ESC><<
@@ -189,25 +183,6 @@ augroup BinaryXXD
     au BufWritePost * set nomod | endif
 augroup END
 
-"拡張子 md をMarkDownとして認識 {{{1
-au BufRead *.md set filetype=markdown
-au BufRead *.txt set filetype=markdown
-au BufNewFile *.txt set filetype=markdown fenc=utf-8 ff=unix
-au BufNewFile *.md set filetype=markdown fenc=utf-8 ff=unix
-
-"拡張子 plt をgnuplotファイルとして認識 {{{1
-au BufRead, BufNewFile *.plt set filetype=gnuplot
-
-"拡張子 sv を systemverilogファイルとして認識 {{{1
-au BufNewFile,BufRead *.v setfiletype verilog_systemverilog.verilog
-au BufNewFile,BufRead *.sv setfiletype verilog_systemverilog.systemverilog
-
-"Verilog/vimrcは折りたたみをマーカーで {{{1
-au BufRead *.vim setlocal foldmethod=marker
-au BufRead *.v setlocal foldmethod=marker
-au BufRead *.sv setlocal foldmethod=marker
-au BufRead .vimrc setlocal foldmethod=marker
-
 "QuickFix {{{1
 au QuickFixCmdPost *grep* :botright cwindow
 
@@ -257,6 +232,8 @@ if !has('nvim')
 endif
 set virtualedit+=all
 
+filetype on
+filetype plugin indent on
 
 
 

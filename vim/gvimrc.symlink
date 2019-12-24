@@ -8,7 +8,11 @@ if !filereadable (expand("~/.gvimrc.local"))
     if !filereadable (expand("~/.dotfiles/vim/gvimrc.local"))
         call system("touch ~/.gvimrc.local")
     else
-        call system("cp ~/.dotfiles/vim/gvimrc.local ~/.gvimrc.local")
+        if has('win32') 
+            call system("copy ~/.dotfiles/vim/gvimrc.local ~/.gvimrc.local")
+        else
+            call system("cp ~/.dotfiles/vim/gvimrc.local ~/.gvimrc.local")
+        endif
     endif
 endif
 

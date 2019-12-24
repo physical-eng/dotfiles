@@ -46,6 +46,7 @@
     quotepath = false
     filemode = true
     attributesfile = ~/.gitattributes
+	commentChar = ";"
 #    pager = lv -c
 [apply]
     whitespace = nowarn
@@ -74,8 +75,7 @@
 [filter "qsys_common"]
         #smudge =  perl -0pe 's/(datum\\ssopceditor_expanded\\s*.*\\s*value\\s=)(\\s\".\")/\\1 \"0\"/gm'
         #clean  =  perl -0pe 's/(datum\\ssopceditor_expanded\\s*.*\\s*value\\s=)(\\s\".\")/\\1 \"0\"/gm'
-        #clean = vi -es /dev/stdin +\":%s// /ge | :%s/\\([^>}]\\)\\n/\\1 /ge | %s/}\\n \\+}/} }/ge | %s/ \\+/ /ge | %s/^\\s\\+/ /ge | %s/^\\(.*sopceditor_expanded { value\\) = \\\"1\\\"/\\1 = \\\"0\\\"/e\" +%p +q!
-        clean = cat
+    clean = vi -es /dev/stdin +\":%s// /ge | :%s/\\([^>}]\\)\\n/\\1 /ge | %s/}\\n \\+}/} }/ge | %s/ \\+/ /ge | %s/^\\s\\+/ /ge | %s/^\\(.*sopceditor_expanded.*value\\) = \\\"1\\\"/\\1 = \\\"0\\\"/e\" +%p +q!
 
 #[filter "source_file"]
 #        smudge = vim -es /dev/stdin +':norm Go/* Last Commit is "^[o^[$' +',$!git --no-pager log --oneline -1' +':norm Go " */^[2k3J' +:%p +:q!

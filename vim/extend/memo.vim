@@ -30,7 +30,7 @@ function! s:open_memo_file()"
     call setline(1, l:template)
     execute '999'
     execute 'write'
-endfunction
+endfunction augroup END"
 
 " メモを作成するコマンド
 command! -nargs=0 MemoNew call s:open_memo_file()
